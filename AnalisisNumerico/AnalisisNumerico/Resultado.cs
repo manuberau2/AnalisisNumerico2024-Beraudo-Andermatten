@@ -10,7 +10,7 @@ namespace AnalisisNumericos
     {
         public double ValorXr { get; set; }
         public int CantidadIteraciones { get; set; }
-        public decimal ErrorRelativo { get; set; }
+        public double ErrorRelativo { get; set; }
         public bool Converge { get; set; }
         public bool Sucess {  get; set; }
 

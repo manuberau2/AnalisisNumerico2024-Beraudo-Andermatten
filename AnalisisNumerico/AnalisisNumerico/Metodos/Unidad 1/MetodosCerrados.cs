@@ -52,11 +52,26 @@ namespace AnalisisNumerico.Metodos.Unidad_1
                 contadorIteraciones++;
                 double xr = (xi + xd) / 2;
                 double error = (Math.Abs(xr - xrAnterior / xr));
+                if (analizadorFuncion.EvaluaFx(xr) < tolerancia || contadorIteraciones > cantidadIteraciones || error < tolerancia)
+                {
+                    resultado.ValorXr = xr;
+                    resultado.ErrorRelativo = error;
+                    resultado.CantidadIteraciones = contadorIteraciones;
+                    resultado.Sucess = true;
+                    break;
+                } else
+                {
+                    if (analizadorFuncion.EvaluaFx(xi) * analizadorFuncion.EvaluaFx(xr) < 0)
+                    {
+                        xd = xr;
+                    } else
+                    {
+                        xi = xr;
+                    }
+                    xrAnterior = xr;
+                }
             }
-
-               
-            
-
+            return resultado;
         }
     }
 }
