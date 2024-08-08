@@ -1,8 +1,8 @@
 namespace AnalisisNumerico
 {
-    public partial class Form1 : Form
+    public partial class FormPrincipal : Form
     {
-        public Form1()
+        public FormPrincipal()
         {
             InitializeComponent();
         }
@@ -38,11 +38,7 @@ namespace AnalisisNumerico
             }
         }
 
-        private void PanelSideMenu_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
+        #region BotonesUnidad1
         private void BtnUnidad1_Click(object sender, EventArgs e)
         {
             MostrarSubMenu(PanelUnidad1);
@@ -71,5 +67,6 @@ namespace AnalisisNumerico
             //Abrir Formulario Secante
             OcultarSubMenu();
         }
+        #endregion
     }
 }

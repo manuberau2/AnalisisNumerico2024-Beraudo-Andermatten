@@ -1,6 +1,6 @@
 ﻿namespace AnalisisNumerico
 {
-    partial class Form1
+    partial class FormPrincipal
     {
         /// <summary>
         ///  Required designer variable.
@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             PanelSideMenu = new Panel();
             PanelUnidad4 = new Panel();
             button21 = new Button();
@@ -56,11 +57,14 @@
             BtnBiseccion = new Button();
             BtnUnidad1 = new Button();
             PanelLogo = new Panel();
+            pictureBox1 = new PictureBox();
             PanelSideMenu.SuspendLayout();
             PanelUnidad4.SuspendLayout();
             PanelUnidad3.SuspendLayout();
             PanelUnidad2.SuspendLayout();
             PanelUnidad1.SuspendLayout();
+            PanelLogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // PanelSideMenu
@@ -81,7 +85,6 @@
             PanelSideMenu.Name = "PanelSideMenu";
             PanelSideMenu.Size = new Size(250, 544);
             PanelSideMenu.TabIndex = 0;
-            PanelSideMenu.Paint += PanelSideMenu_Paint;
             // 
             // PanelUnidad4
             // 
@@ -478,11 +481,22 @@
             // 
             // PanelLogo
             // 
+            PanelLogo.Controls.Add(pictureBox1);
             PanelLogo.Dock = DockStyle.Top;
             PanelLogo.Location = new Point(0, 0);
             PanelLogo.Name = "PanelLogo";
             PanelLogo.Size = new Size(224, 103);
             PanelLogo.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(3, -15);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(222, 141);
+            pictureBox1.SizeMode = PictureBoxSizeMode.Zoom;
+            pictureBox1.TabIndex = 0;
+            pictureBox1.TabStop = false;
             // 
             // Form1
             // 
@@ -491,6 +505,7 @@
             ClientSize = new Size(928, 544);
             Controls.Add(PanelSideMenu);
             Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(950, 600);
             Name = "Form1";
             Text = "Form1";
@@ -499,6 +514,8 @@
             PanelUnidad3.ResumeLayout(false);
             PanelUnidad2.ResumeLayout(false);
             PanelUnidad1.ResumeLayout(false);
+            PanelLogo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 
@@ -532,5 +549,6 @@
         private Button button12;
         private Button button13;
         private Button button14;
+        private PictureBox pictureBox1;
     }
 }
