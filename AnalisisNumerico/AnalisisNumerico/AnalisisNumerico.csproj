@@ -9,13 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="Calculus">
-      <HintPath>..\Calculus-C-dll-and-Java-Android--master\Calculus.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.2592.51" />
+    <PackageReference Include="OxyPlot.WindowsForms" Version="2.1.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Forms\" />
+    <Reference Include="Calculus">
+      <HintPath>..\Calculus-C-dll-and-Java-Android--master\Calculus.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>

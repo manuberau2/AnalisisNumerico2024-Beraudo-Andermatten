@@ -58,6 +58,8 @@
             BtnUnidad1 = new Button();
             PanelLogo = new Panel();
             pictureBox1 = new PictureBox();
+            PanelFormularioHijo = new Panel();
+            pictureBox2 = new PictureBox();
             PanelSideMenu.SuspendLayout();
             PanelUnidad4.SuspendLayout();
             PanelUnidad3.SuspendLayout();
@@ -65,6 +67,8 @@
             PanelUnidad1.SuspendLayout();
             PanelLogo.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            PanelFormularioHijo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             SuspendLayout();
             // 
             // PanelSideMenu
@@ -498,17 +502,39 @@
             pictureBox1.TabIndex = 0;
             pictureBox1.TabStop = false;
             // 
-            // Form1
+            // PanelFormularioHijo
+            // 
+            PanelFormularioHijo.BackColor = Color.FromArgb(32, 30, 45);
+            PanelFormularioHijo.Controls.Add(pictureBox2);
+            PanelFormularioHijo.Dock = DockStyle.Fill;
+            PanelFormularioHijo.Location = new Point(250, 0);
+            PanelFormularioHijo.Name = "PanelFormularioHijo";
+            PanelFormularioHijo.Size = new Size(678, 544);
+            PanelFormularioHijo.TabIndex = 1;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.Anchor = AnchorStyles.None;
+            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
+            pictureBox2.Location = new Point(242, 148);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(221, 202);
+            pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox2.TabIndex = 0;
+            pictureBox2.TabStop = false;
+            // 
+            // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(928, 544);
+            Controls.Add(PanelFormularioHijo);
             Controls.Add(PanelSideMenu);
             Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(950, 600);
-            Name = "Form1";
-            Text = "Form1";
+            Name = "FormPrincipal";
+            Text = "Análisis Numérico";
             PanelSideMenu.ResumeLayout(false);
             PanelUnidad4.ResumeLayout(false);
             PanelUnidad3.ResumeLayout(false);
@@ -516,6 +542,8 @@
             PanelUnidad1.ResumeLayout(false);
             PanelLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            PanelFormularioHijo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ResumeLayout(false);
         }
 
@@ -550,5 +578,7 @@
         private Button button13;
         private Button button14;
         private PictureBox pictureBox1;
+        private Panel PanelFormularioHijo;
+        private PictureBox pictureBox2;
     }
 }
