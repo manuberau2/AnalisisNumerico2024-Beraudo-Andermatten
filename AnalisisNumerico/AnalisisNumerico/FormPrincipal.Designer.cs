@@ -87,7 +87,7 @@
             PanelSideMenu.Dock = DockStyle.Left;
             PanelSideMenu.Location = new Point(0, 0);
             PanelSideMenu.Name = "PanelSideMenu";
-            PanelSideMenu.Size = new Size(250, 544);
+            PanelSideMenu.Size = new Size(250, 609);
             PanelSideMenu.TabIndex = 0;
             // 
             // PanelUnidad4
@@ -509,14 +509,14 @@
             PanelFormularioHijo.Dock = DockStyle.Fill;
             PanelFormularioHijo.Location = new Point(250, 0);
             PanelFormularioHijo.Name = "PanelFormularioHijo";
-            PanelFormularioHijo.Size = new Size(678, 544);
+            PanelFormularioHijo.Size = new Size(1027, 609);
             PanelFormularioHijo.TabIndex = 1;
             // 
             // pictureBox2
             // 
             pictureBox2.Anchor = AnchorStyles.None;
             pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(242, 148);
+            pictureBox2.Location = new Point(416, 180);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(221, 202);
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -527,13 +527,14 @@
             // 
             AutoScaleDimensions = new SizeF(11F, 28F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(928, 544);
+            ClientSize = new Size(1277, 609);
             Controls.Add(PanelFormularioHijo);
             Controls.Add(PanelSideMenu);
             Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(950, 600);
             Name = "FormPrincipal";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Análisis Numérico";
             PanelSideMenu.ResumeLayout(false);
             PanelUnidad4.ResumeLayout(false);
