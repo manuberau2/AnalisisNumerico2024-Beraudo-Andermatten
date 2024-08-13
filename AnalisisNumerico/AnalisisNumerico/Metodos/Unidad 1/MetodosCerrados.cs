@@ -17,76 +17,81 @@ namespace AnalisisNumerico.Metodos.Unidad_1
         {
             Resultado resultado = new Resultado();
             Calculo analizadorFuncion = new Calculo();
-            double xrAnterior = 0;
-            int contadorIteraciones = 0;
+            analizadorFuncion.Sintaxis(funcion, 'x');
+
+            double fxI = analizadorFuncion.EvaluaFx(xi);
+            double fxD = analizadorFuncion.EvaluaFx(xd);
+
+            // Verificar si uno de los extremos del intervalo es raíz
+            if (fxI == 0)
+            {
+                resultado.ValorXr = xi;
+                resultado.ErrorRelativo = 0;
+                resultado.CantidadIteraciones = 0;
+                resultado.Converge = true;
+                resultado.Sucess = true;
+                return resultado;
+            }
+            else if (fxD == 0)
+            {
+                resultado.ValorXr = xd;
+                resultado.ErrorRelativo = 0;
+                resultado.CantidadIteraciones = 0;
+                resultado.Converge = true;
+                resultado.Sucess = true;
+                return resultado;
+            }
 
             // Verificar si el intervalo es válido
-            while (analizadorFuncion.EvaluaFx(xi) * analizadorFuncion.EvaluaFx(xd) >= 0)
+            if (fxI * fxD > 0)
             {
-                if (analizadorFuncion.EvaluaFx(xi) == 0)
-                {
-                    resultado.ValorXr = xi;
-                    resultado.ErrorRelativo = 0;
-                    resultado.CantidadIteraciones = contadorIteraciones;
-                    resultado.Converge = true;
-                    resultado.Sucess = true;
-                    return resultado;
-                }
-                else if (analizadorFuncion.EvaluaFx(xd) == 0)
-                {
-                    resultado.ValorXr = xd;
-                    resultado.ErrorRelativo = 0;
-                    resultado.CantidadIteraciones = contadorIteraciones;
-                    resultado.Converge = true;
-                    resultado.Sucess = true;
-                    return resultado;
-                }
-
-                // Mostrar mensaje y permitir al usuario ingresar nuevos valores
-                MessageBox.Show($"El intervalo [{xi}, {xd}] no contiene una raíz. Ingrese nuevos valores.");
+                resultado.Sucess = false;
+                resultado.Converge = false;
                 return resultado; // Finalizar el método para permitir la corrección de los valores
             }
 
+            double xrAnterior = 0;
+            int contadorIteraciones = 0;
+
             // Lógica del método de bisección
-            while (true)
+            while (contadorIteraciones < cantidadIteraciones)
             {
                 contadorIteraciones++;
                 double xr = (xi + xd) / 2;
                 double fxr = analizadorFuncion.EvaluaFx(xr);
                 double error = xr == 0 ? 0 : Math.Abs((xr - xrAnterior) / xr); // Evitar división por cero
 
-                if (Math.Abs(fxr) < tolerancia || contadorIteraciones > cantidadIteraciones || error < tolerancia)
+                // Verificar si se ha alcanzado la tolerancia o si el método ha convergido
+                if (Math.Abs(fxr) < tolerancia || error < tolerancia)
                 {
                     resultado.ValorXr = xr;
                     resultado.ErrorRelativo = error;
                     resultado.CantidadIteraciones = contadorIteraciones;
                     resultado.Converge = true;
                     resultado.Sucess = true;
-                    break;
+                    return resultado;
                 }
 
-                if (analizadorFuncion.EvaluaFx(xi) * fxr < 0)
+                if (fxI * fxr < 0)
                 {
                     xd = xr;
+                    fxD = fxr;
                 }
                 else
                 {
                     xi = xr;
+                    fxI = fxr;
                 }
 
                 xrAnterior = xr;
-
-                // Verificar si se ha alcanzado el número máximo de iteraciones
-                if (contadorIteraciones >= cantidadIteraciones)
-                {
-                    resultado.ValorXr = xr;
-                    resultado.ErrorRelativo = error;
-                    resultado.CantidadIteraciones = contadorIteraciones;
-                    resultado.Converge = false;
-                    resultado.Sucess = true; // El método ha terminado, pero no ha convergido
-                    break;
-                }
             }
+
+            // Si se alcanzó el máximo de iteraciones sin converger
+            resultado.ValorXr = (xi + xd) / 2;
+            resultado.ErrorRelativo = Math.Abs((resultado.ValorXr - xrAnterior) / resultado.ValorXr);
+            resultado.CantidadIteraciones = contadorIteraciones;
+            resultado.Converge = false;
+            resultado.Sucess = true;
 
             return resultado;
         }
@@ -159,6 +164,4 @@ namespace AnalisisNumerico.Metodos.Unidad_1
             return resultado;
         }
     }
-}
-
 }

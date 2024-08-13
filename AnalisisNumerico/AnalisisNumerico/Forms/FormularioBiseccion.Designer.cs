@@ -45,16 +45,16 @@
             LabelTexto = new Label();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
+            label11 = new Label();
+            TextBoxObservaciones = new TextBox();
+            label9 = new Label();
+            TextBoxXrResult = new TextBox();
+            TextBoxErrorRelativoResult = new TextBox();
+            TextBoxIteracionesResult = new TextBox();
+            TextBoxConvergenciaResult = new TextBox();
             label1 = new Label();
             label10 = new Label();
             label12 = new Label();
-            TextBoxConvergenciaResult = new TextBox();
-            TextBoxIteracionesResult = new TextBox();
-            TextBoxErrorRelativoResult = new TextBox();
-            TextBoxXrResult = new TextBox();
-            label9 = new Label();
-            textBox1 = new TextBox();
-            label11 = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -154,6 +154,7 @@
             BtnCalcularRaiz.TabIndex = 11;
             BtnCalcularRaiz.Text = "Calcular raíz";
             BtnCalcularRaiz.UseVisualStyleBackColor = true;
+            BtnCalcularRaiz.Click += BtnCalcularRaiz_Click;
             // 
             // TextBoxXi
             // 
@@ -227,7 +228,7 @@
             // groupBox2
             // 
             groupBox2.Controls.Add(label11);
-            groupBox2.Controls.Add(textBox1);
+            groupBox2.Controls.Add(TextBoxObservaciones);
             groupBox2.Controls.Add(label9);
             groupBox2.Controls.Add(TextBoxXrResult);
             groupBox2.Controls.Add(TextBoxErrorRelativoResult);
@@ -244,6 +245,69 @@
             groupBox2.TabIndex = 18;
             groupBox2.TabStop = false;
             groupBox2.Text = "Salida";
+            // 
+            // label11
+            // 
+            label11.AutoSize = true;
+            label11.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label11.ForeColor = Color.FromArgb(223, 225, 210);
+            label11.Location = new Point(122, 370);
+            label11.Name = "label11";
+            label11.Size = new Size(206, 32);
+            label11.TabIndex = 22;
+            label11.Text = "OBSERVACIONES:";
+            // 
+            // TextBoxObservaciones
+            // 
+            TextBoxObservaciones.Location = new Point(53, 413);
+            TextBoxObservaciones.Multiline = true;
+            TextBoxObservaciones.Name = "TextBoxObservaciones";
+            TextBoxObservaciones.ReadOnly = true;
+            TextBoxObservaciones.Size = new Size(343, 78);
+            TextBoxObservaciones.TabIndex = 21;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label9.ForeColor = Color.FromArgb(223, 225, 210);
+            label9.Location = new Point(146, 271);
+            label9.Name = "label9";
+            label9.Size = new Size(162, 32);
+            label9.TabIndex = 20;
+            label9.Text = "VALOR DE Xr:";
+            // 
+            // TextBoxXrResult
+            // 
+            TextBoxXrResult.Location = new Point(53, 306);
+            TextBoxXrResult.Name = "TextBoxXrResult";
+            TextBoxXrResult.ReadOnly = true;
+            TextBoxXrResult.Size = new Size(333, 39);
+            TextBoxXrResult.TabIndex = 19;
+            // 
+            // TextBoxErrorRelativoResult
+            // 
+            TextBoxErrorRelativoResult.Location = new Point(53, 229);
+            TextBoxErrorRelativoResult.Name = "TextBoxErrorRelativoResult";
+            TextBoxErrorRelativoResult.ReadOnly = true;
+            TextBoxErrorRelativoResult.Size = new Size(333, 39);
+            TextBoxErrorRelativoResult.TabIndex = 18;
+            // 
+            // TextBoxIteracionesResult
+            // 
+            TextBoxIteracionesResult.Location = new Point(53, 147);
+            TextBoxIteracionesResult.Name = "TextBoxIteracionesResult";
+            TextBoxIteracionesResult.ReadOnly = true;
+            TextBoxIteracionesResult.Size = new Size(333, 39);
+            TextBoxIteracionesResult.TabIndex = 17;
+            // 
+            // TextBoxConvergenciaResult
+            // 
+            TextBoxConvergenciaResult.Location = new Point(53, 70);
+            TextBoxConvergenciaResult.Name = "TextBoxConvergenciaResult";
+            TextBoxConvergenciaResult.ReadOnly = true;
+            TextBoxConvergenciaResult.Size = new Size(333, 39);
+            TextBoxConvergenciaResult.TabIndex = 16;
             // 
             // label1
             // 
@@ -277,69 +341,6 @@
             label12.Size = new Size(209, 32);
             label12.TabIndex = 9;
             label12.Text = "ERROR RELATIVO:";
-            // 
-            // TextBoxConvergenciaResult
-            // 
-            TextBoxConvergenciaResult.Location = new Point(53, 70);
-            TextBoxConvergenciaResult.Name = "TextBoxConvergenciaResult";
-            TextBoxConvergenciaResult.ReadOnly = true;
-            TextBoxConvergenciaResult.Size = new Size(333, 39);
-            TextBoxConvergenciaResult.TabIndex = 16;
-            // 
-            // TextBoxIteracionesResult
-            // 
-            TextBoxIteracionesResult.Location = new Point(53, 147);
-            TextBoxIteracionesResult.Name = "TextBoxIteracionesResult";
-            TextBoxIteracionesResult.ReadOnly = true;
-            TextBoxIteracionesResult.Size = new Size(333, 39);
-            TextBoxIteracionesResult.TabIndex = 17;
-            // 
-            // TextBoxErrorRelativoResult
-            // 
-            TextBoxErrorRelativoResult.Location = new Point(53, 229);
-            TextBoxErrorRelativoResult.Name = "TextBoxErrorRelativoResult";
-            TextBoxErrorRelativoResult.ReadOnly = true;
-            TextBoxErrorRelativoResult.Size = new Size(333, 39);
-            TextBoxErrorRelativoResult.TabIndex = 18;
-            // 
-            // TextBoxXrResult
-            // 
-            TextBoxXrResult.Location = new Point(53, 306);
-            TextBoxXrResult.Name = "TextBoxXrResult";
-            TextBoxXrResult.ReadOnly = true;
-            TextBoxXrResult.Size = new Size(333, 39);
-            TextBoxXrResult.TabIndex = 19;
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.ForeColor = Color.FromArgb(223, 225, 210);
-            label9.Location = new Point(146, 271);
-            label9.Name = "label9";
-            label9.Size = new Size(162, 32);
-            label9.TabIndex = 20;
-            label9.Text = "VALOR DE Xr:";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(53, 413);
-            textBox1.Multiline = true;
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(343, 78);
-            textBox1.TabIndex = 21;
-            // 
-            // label11
-            // 
-            label11.AutoSize = true;
-            label11.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label11.ForeColor = Color.FromArgb(223, 225, 210);
-            label11.Location = new Point(122, 370);
-            label11.Name = "label11";
-            label11.Size = new Size(206, 32);
-            label11.TabIndex = 22;
-            label11.Text = "OBSERVACIONES:";
             // 
             // FormularioBiseccion
             // 
@@ -390,6 +391,6 @@
         private TextBox TextBoxIteracionesResult;
         private TextBox TextBoxConvergenciaResult;
         private Label label11;
-        private TextBox textBox1;
+        private TextBox TextBoxObservaciones;
     }
 }

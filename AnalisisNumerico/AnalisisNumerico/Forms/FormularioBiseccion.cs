@@ -103,16 +103,42 @@ namespace AnalisisNumerico.Forms
         private void TextBoxTolerancia_KeyPress(object sender, KeyPressEventArgs e)
         {
             // Permitir solo dígitos, el punto decimal y teclas de control
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != '.' && !char.IsControl(e.KeyChar))
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
 
             // Permitir solo un punto decimal
-            if (e.KeyChar == '.' && (sender as TextBox).Text.Contains("."))
+            if (e.KeyChar == ',' && (sender as TextBox).Text.Contains(","))
             {
                 e.Handled = true;
             }
+        }
+
+        private void BtnCalcularRaiz_Click(object sender, EventArgs e)
+        {
+            // Inicializar y ejecutar el método de bisección
+            MetodosCerrados metodosCerrados = new MetodosCerrados();
+            Resultado resultado = metodosCerrados.UseBiseccion(
+                TextBoxFuncion.Text, double.Parse(TextBoxTolerancia.Text), int.Parse(TextBoxIteraciones.Text), double.Parse(TextBoxXi.Text), double.Parse(TextBoxXd.Text));
+            // Verificar si el intervalo no es válido
+            if (!resultado.Sucess)
+            {
+                MessageBox.Show($"El intervalo [{TextBoxXi.Text}, {TextBoxXd.Text}] no contiene una raíz. Ingrese nuevos valores.");
+                TextBoxXi.Clear();
+                TextBoxXd.Clear();
+                return;
+            }
+
+            // Mostrar los resultados dependiendo de la convergencia
+            TextBoxConvergenciaResult.Text = resultado.Converge ? "Sí" : "No";
+            TextBoxXrResult.Text = resultado.ValorXr.ToString("F4");
+            TextBoxErrorRelativoResult.Text = resultado.ErrorRelativo.ToString("F4");
+            TextBoxIteracionesResult.Text = resultado.CantidadIteraciones.ToString();
+
+            TextBoxObservaciones.Text = resultado.Converge
+                ? "Felicitaciones, el método converge y se ha encontrado la raíz en el intervalo proporcionado."
+                : "El método llegó a la cantidad de iteraciones y no encontró la raíz exacta.";
         }
     }
 }
