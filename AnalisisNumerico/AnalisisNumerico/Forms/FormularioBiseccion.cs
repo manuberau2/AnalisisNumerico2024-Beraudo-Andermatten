@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using AnalisisNumericos;
 using AnalisisNumerico.Metodos.Unidad_1;
 using Calculus;
+using AnalisisNumerico;
 
 namespace AnalisisNumerico.Forms
 {
@@ -132,13 +133,54 @@ namespace AnalisisNumerico.Forms
 
             // Mostrar los resultados dependiendo de la convergencia
             TextBoxConvergenciaResult.Text = resultado.Converge ? "Sí" : "No";
-            TextBoxXrResult.Text = resultado.ValorXr.ToString("F4");
-            TextBoxErrorRelativoResult.Text = resultado.ErrorRelativo.ToString("F4");
+            TextBoxXrResult.Text = Math.Round(resultado.ValorXr, 4).ToString();
+            TextBoxErrorRelativoResult.Text = Math.Round(resultado.ErrorRelativo, 4).ToString();
             TextBoxIteracionesResult.Text = resultado.CantidadIteraciones.ToString();
 
             TextBoxObservaciones.Text = resultado.Converge
                 ? "Felicitaciones, el método converge y se ha encontrado la raíz en el intervalo proporcionado."
                 : "El método llegó a la cantidad de iteraciones y no encontró la raíz exacta.";
+        }
+
+        private void TextBoxXi_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo dígitos, el punto decimal y teclas de control
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // Permitir solo un punto decimal
+            if (e.KeyChar == ',' && (sender as TextBox).Text.Contains(","))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TextBoxXd_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permitir solo dígitos, el punto decimal y teclas de control
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+            // Permitir solo un punto decimal
+            if (e.KeyChar == ',' && (sender as TextBox).Text.Contains(","))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void BtnVerFuncion_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(TextBoxFuncion.Text))
+            {
+                MessageBox.Show("No ha ingresado una función.");
+                return;
+            }
+            FormularioGrafica formularioGrafica = new FormularioGrafica(TextBoxFuncion.Text);
+            formularioGrafica.Show();
         }
     }
 }

@@ -144,6 +144,7 @@
             BtnVerFuncion.TabIndex = 10;
             BtnVerFuncion.Text = "Ver función";
             BtnVerFuncion.UseVisualStyleBackColor = true;
+            BtnVerFuncion.Click += BtnVerFuncion_Click;
             // 
             // BtnCalcularRaiz
             // 
@@ -162,6 +163,7 @@
             TextBoxXi.Name = "TextBoxXi";
             TextBoxXi.Size = new Size(160, 39);
             TextBoxXi.TabIndex = 12;
+            TextBoxXi.KeyPress += TextBoxXi_KeyPress;
             // 
             // label7
             // 
@@ -180,6 +182,7 @@
             TextBoxXd.Name = "TextBoxXd";
             TextBoxXd.Size = new Size(160, 39);
             TextBoxXd.TabIndex = 14;
+            TextBoxXd.KeyPress += TextBoxXd_KeyPress;
             // 
             // label8
             // 
@@ -251,7 +254,7 @@
             label11.AutoSize = true;
             label11.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label11.ForeColor = Color.FromArgb(223, 225, 210);
-            label11.Location = new Point(122, 370);
+            label11.Location = new Point(119, 348);
             label11.Name = "label11";
             label11.Size = new Size(206, 32);
             label11.TabIndex = 22;
@@ -259,11 +262,12 @@
             // 
             // TextBoxObservaciones
             // 
-            TextBoxObservaciones.Location = new Point(53, 413);
+            TextBoxObservaciones.Location = new Point(53, 383);
             TextBoxObservaciones.Multiline = true;
             TextBoxObservaciones.Name = "TextBoxObservaciones";
             TextBoxObservaciones.ReadOnly = true;
-            TextBoxObservaciones.Size = new Size(343, 78);
+            TextBoxObservaciones.ScrollBars = ScrollBars.Vertical;
+            TextBoxObservaciones.Size = new Size(343, 122);
             TextBoxObservaciones.TabIndex = 21;
             // 
             // label9
