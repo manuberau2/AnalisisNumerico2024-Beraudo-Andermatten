@@ -120,8 +120,12 @@ namespace AnalisisNumerico.Forms
         {
             // Inicializar y ejecutar el método de bisección
             MetodosCerrados metodosCerrados = new MetodosCerrados();
-            Resultado resultado = metodosCerrados.UseBiseccion(
-                TextBoxFuncion.Text, double.Parse(TextBoxTolerancia.Text), int.Parse(TextBoxIteraciones.Text), double.Parse(TextBoxXi.Text), double.Parse(TextBoxXd.Text));
+            if (string.IsNullOrWhiteSpace(TextBoxFuncion.Text) || string.IsNullOrWhiteSpace(TextBoxIteraciones.Text) || string.IsNullOrWhiteSpace(TextBoxTolerancia.Text) || string.IsNullOrWhiteSpace(TextBoxXi.Text) || string.IsNullOrWhiteSpace(TextBoxXd.Text))
+            {
+                MessageBox.Show("Debe completar todos los campos");
+                return;
+            }
+            Resultado resultado = metodosCerrados.UseBiseccion(TextBoxFuncion.Text, double.Parse(TextBoxTolerancia.Text), int.Parse(TextBoxIteraciones.Text), double.Parse(TextBoxXi.Text), double.Parse(TextBoxXd.Text));
             // Verificar si el intervalo no es válido
             if (!resultado.Sucess)
             {
