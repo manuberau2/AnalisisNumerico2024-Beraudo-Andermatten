@@ -1,4 +1,6 @@
-﻿using Calculus;
+﻿using AnalisisNumerico.Metodos.Unidad_1;
+using AnalisisNumericos;
+using Calculus;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -164,6 +166,13 @@ namespace AnalisisNumerico.Forms
             }
             FormularioGrafica formularioGrafica = new FormularioGrafica(TextBoxFuncion.Text);
             formularioGrafica.Show();
+        }
+
+        private void BtnCalcularRaiz_Click(object sender, EventArgs e)
+        {
+            MetodosCerrados metodo = new MetodosCerrados();
+            Resultado resultado = metodo.UseReglaFalsa()
+                ;
         }
     }
 }
