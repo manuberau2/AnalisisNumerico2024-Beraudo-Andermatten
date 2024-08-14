@@ -55,6 +55,7 @@
             label1 = new Label();
             label10 = new Label();
             label12 = new Label();
+            LabelTitulo = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -69,7 +70,7 @@
             // 
             // TextBoxFuncion
             // 
-            TextBoxFuncion.Location = new Point(44, 70);
+            TextBoxFuncion.Location = new Point(44, 60);
             TextBoxFuncion.Name = "TextBoxFuncion";
             TextBoxFuncion.Size = new Size(333, 39);
             TextBoxFuncion.TabIndex = 2;
@@ -77,7 +78,7 @@
             // 
             // TextBoxIteraciones
             // 
-            TextBoxIteraciones.Location = new Point(44, 147);
+            TextBoxIteraciones.Location = new Point(44, 152);
             TextBoxIteraciones.Name = "TextBoxIteraciones";
             TextBoxIteraciones.Size = new Size(333, 39);
             TextBoxIteraciones.TabIndex = 3;
@@ -98,7 +99,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label3.ForeColor = Color.FromArgb(223, 225, 210);
-            label3.Location = new Point(139, 35);
+            label3.Location = new Point(138, 25);
             label3.Name = "label3";
             label3.Size = new Size(125, 32);
             label3.TabIndex = 5;
@@ -117,7 +118,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.FromArgb(223, 225, 210);
-            label6.Location = new Point(86, 112);
+            label6.Location = new Point(90, 102);
             label6.Name = "label6";
             label6.Size = new Size(236, 32);
             label6.TabIndex = 8;
@@ -128,7 +129,7 @@
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label4.ForeColor = Color.FromArgb(223, 225, 210);
-            label4.Location = new Point(124, 194);
+            label4.Location = new Point(121, 189);
             label4.Name = "label4";
             label4.Size = new Size(161, 32);
             label4.TabIndex = 9;
@@ -138,7 +139,7 @@
             // 
             BtnVerFuncion.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             BtnVerFuncion.ForeColor = SystemColors.ControlText;
-            BtnVerFuncion.Location = new Point(44, 362);
+            BtnVerFuncion.Location = new Point(44, 358);
             BtnVerFuncion.Name = "BtnVerFuncion";
             BtnVerFuncion.Size = new Size(333, 49);
             BtnVerFuncion.TabIndex = 10;
@@ -149,7 +150,7 @@
             // BtnCalcularRaiz
             // 
             BtnCalcularRaiz.ForeColor = SystemColors.ControlText;
-            BtnCalcularRaiz.Location = new Point(44, 429);
+            BtnCalcularRaiz.Location = new Point(44, 413);
             BtnCalcularRaiz.Name = "BtnCalcularRaiz";
             BtnCalcularRaiz.Size = new Size(333, 49);
             BtnCalcularRaiz.TabIndex = 11;
@@ -159,7 +160,7 @@
             // 
             // TextBoxXi
             // 
-            TextBoxXi.Location = new Point(44, 306);
+            TextBoxXi.Location = new Point(44, 313);
             TextBoxXi.Name = "TextBoxXi";
             TextBoxXi.Size = new Size(160, 39);
             TextBoxXi.TabIndex = 12;
@@ -178,7 +179,7 @@
             // 
             // TextBoxXd
             // 
-            TextBoxXd.Location = new Point(217, 306);
+            TextBoxXd.Location = new Point(217, 313);
             TextBoxXd.Name = "TextBoxXd";
             TextBoxXd.Size = new Size(160, 39);
             TextBoxXd.TabIndex = 14;
@@ -221,9 +222,9 @@
             groupBox1.Controls.Add(TextBoxTolerancia);
             groupBox1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox1.ForeColor = Color.FromArgb(223, 225, 210);
-            groupBox1.Location = new Point(12, 12);
+            groupBox1.Location = new Point(12, 69);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(441, 511);
+            groupBox1.Size = new Size(416, 467);
             groupBox1.TabIndex = 17;
             groupBox1.TabStop = false;
             groupBox1.Text = "Entrada";
@@ -242,9 +243,9 @@
             groupBox2.Controls.Add(label12);
             groupBox2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
             groupBox2.ForeColor = Color.FromArgb(223, 225, 210);
-            groupBox2.Location = new Point(505, 12);
+            groupBox2.Location = new Point(450, 12);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(441, 511);
+            groupBox2.Size = new Size(416, 524);
             groupBox2.TabIndex = 18;
             groupBox2.TabStop = false;
             groupBox2.Text = "Salida";
@@ -346,12 +347,24 @@
             label12.TabIndex = 9;
             label12.Text = "ERROR RELATIVO:";
             // 
+            // LabelTitulo
+            // 
+            LabelTitulo.AutoSize = true;
+            LabelTitulo.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Point);
+            LabelTitulo.ForeColor = Color.FromArgb(255, 128, 0);
+            LabelTitulo.Location = new Point(102, 12);
+            LabelTitulo.Name = "LabelTitulo";
+            LabelTitulo.Size = new Size(229, 54);
+            LabelTitulo.TabIndex = 16;
+            LabelTitulo.Text = "BISECCIÓN";
+            // 
             // FormularioBiseccion
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(32, 30, 45);
             ClientSize = new Size(975, 548);
+            Controls.Add(LabelTitulo);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(LabelTexto);
@@ -396,5 +409,6 @@
         private TextBox TextBoxConvergenciaResult;
         private Label label11;
         private TextBox TextBoxObservaciones;
+        private Label LabelTitulo;
     }
 }

@@ -144,14 +144,22 @@ namespace AnalisisNumerico.Forms
 
         private void TextBoxXi_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Permitir solo dígitos, el punto decimal y teclas de control
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            TextBox textBox = sender as TextBox;
+
+            // Permitir solo dígitos, el punto decimal, el signo "-" y teclas de control
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '-' && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
 
             // Permitir solo un punto decimal
-            if (e.KeyChar == ',' && (sender as TextBox).Text.Contains(","))
+            if (e.KeyChar == ',' && textBox.Text.Contains(","))
+            {
+                e.Handled = true;
+            }
+
+            // Permitir solo un signo "-" al inicio del texto
+            if (e.KeyChar == '-' && (textBox.Text.Length > 0 || textBox.Text.Contains("-")))
             {
                 e.Handled = true;
             }
@@ -159,14 +167,22 @@ namespace AnalisisNumerico.Forms
 
         private void TextBoxXd_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Permitir solo dígitos, el punto decimal y teclas de control
-            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && !char.IsControl(e.KeyChar))
+            TextBox textBox = sender as TextBox;
+
+            // Permitir solo dígitos, el punto decimal, el signo "-" y teclas de control
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != ',' && e.KeyChar != '-' && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
 
             // Permitir solo un punto decimal
-            if (e.KeyChar == ',' && (sender as TextBox).Text.Contains(","))
+            if (e.KeyChar == ',' && textBox.Text.Contains(","))
+            {
+                e.Handled = true;
+            }
+
+            // Permitir solo un signo "-" al inicio del texto
+            if (e.KeyChar == '-' && (textBox.Text.Length > 0 || textBox.Text.Contains("-")))
             {
                 e.Handled = true;
             }
