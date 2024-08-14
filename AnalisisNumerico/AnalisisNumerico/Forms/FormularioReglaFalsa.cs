@@ -170,9 +170,7 @@ namespace AnalisisNumerico.Forms
 
         private void BtnCalcularRaiz_Click(object sender, EventArgs e)
         {
-            MetodosCerrados metodo = new MetodosCerrados();
-            Resultado resultado = metodo.UseReglaFalsa()
-                ;
+
         }
     }
 }

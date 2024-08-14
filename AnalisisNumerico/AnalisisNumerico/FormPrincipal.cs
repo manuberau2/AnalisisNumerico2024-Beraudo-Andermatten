@@ -66,12 +66,14 @@ namespace AnalisisNumerico
 
         private void BtnNewtonRaphson_Click(object sender, EventArgs e)
         {
+            AbrirFormularioHijo(new FormularioNewtonRaphson());
             //Abrir Formulario Newton Raphson
             OcultarSubMenu();
         }
 
         private void BtnSecante_Click(object sender, EventArgs e)
         {
+            AbrirFormularioHijo(new FormularioSecante());
             //Abrir Formulario Secante
             OcultarSubMenu();
         }
