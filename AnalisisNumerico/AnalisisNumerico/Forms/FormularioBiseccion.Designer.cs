@@ -78,7 +78,7 @@
             // 
             // TextBoxIteraciones
             // 
-            TextBoxIteraciones.Location = new Point(44, 152);
+            TextBoxIteraciones.Location = new Point(44, 147);
             TextBoxIteraciones.Name = "TextBoxIteraciones";
             TextBoxIteraciones.Size = new Size(333, 39);
             TextBoxIteraciones.TabIndex = 3;
@@ -118,7 +118,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.FromArgb(223, 225, 210);
-            label6.Location = new Point(90, 102);
+            label6.Location = new Point(90, 112);
             label6.Name = "label6";
             label6.Size = new Size(236, 32);
             label6.TabIndex = 8;

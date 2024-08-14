@@ -215,6 +215,7 @@
             TextBoxFuncion.Name = "TextBoxFuncion";
             TextBoxFuncion.Size = new Size(333, 39);
             TextBoxFuncion.TabIndex = 2;
+            TextBoxFuncion.Validating += TextBoxFuncion_Validating;
             // 
             // BtnVerFuncion
             // 
@@ -226,6 +227,7 @@
             BtnVerFuncion.TabIndex = 10;
             BtnVerFuncion.Text = "Ver función";
             BtnVerFuncion.UseVisualStyleBackColor = true;
+            BtnVerFuncion.Click += BtnVerFuncion_Click;
             // 
             // BtnCalcularRaiz
             // 
@@ -243,6 +245,7 @@
             TextBoxXd.Name = "TextBoxXd";
             TextBoxXd.Size = new Size(160, 39);
             TextBoxXd.TabIndex = 14;
+            TextBoxXd.KeyPress += TextBoxXd_KeyPress;
             // 
             // label8
             // 
@@ -260,7 +263,7 @@
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
             label6.ForeColor = Color.FromArgb(223, 225, 210);
-            label6.Location = new Point(90, 102);
+            label6.Location = new Point(90, 112);
             label6.Name = "label6";
             label6.Size = new Size(236, 32);
             label6.TabIndex = 8;
@@ -268,10 +271,12 @@
             // 
             // TextBoxIteraciones
             // 
-            TextBoxIteraciones.Location = new Point(44, 152);
+            TextBoxIteraciones.Location = new Point(44, 147);
             TextBoxIteraciones.Name = "TextBoxIteraciones";
             TextBoxIteraciones.Size = new Size(333, 39);
             TextBoxIteraciones.TabIndex = 3;
+            TextBoxIteraciones.KeyPress += TextBoxIteraciones_KeyPress;
+            TextBoxIteraciones.Validating += TextBoxIteraciones_Validating;
             // 
             // TextBoxXi
             // 
@@ -279,6 +284,7 @@
             TextBoxXi.Name = "TextBoxXi";
             TextBoxXi.Size = new Size(160, 39);
             TextBoxXi.TabIndex = 12;
+            TextBoxXi.KeyPress += TextBoxXi_KeyPress;
             // 
             // label7
             // 
@@ -308,6 +314,8 @@
             TextBoxTolerancia.Name = "TextBoxTolerancia";
             TextBoxTolerancia.Size = new Size(333, 39);
             TextBoxTolerancia.TabIndex = 4;
+            TextBoxTolerancia.KeyPress += TextBoxTolerancia_KeyPress;
+            TextBoxTolerancia.Validating += TextBoxTolerancia_Validating;
             // 
             // LabelTitulo
             // 
