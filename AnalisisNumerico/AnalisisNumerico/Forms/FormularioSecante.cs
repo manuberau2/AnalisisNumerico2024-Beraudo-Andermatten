@@ -1,4 +1,6 @@
-﻿using Calculus;
+﻿using AnalisisNumerico.Metodos.Unidad_1;
+using AnalisisNumericos;
+using Calculus;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -168,7 +170,32 @@ namespace AnalisisNumerico.Forms
 
         private void BtnCalcularRaiz_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(TextBoxFuncion.Text) || string.IsNullOrWhiteSpace(TextBoxIteraciones.Text) || string.IsNullOrWhiteSpace(TextBoxTolerancia.Text) || string.IsNullOrWhiteSpace(TextBoxXi.Text) || string.IsNullOrWhiteSpace(TextBoxXd.Text))
+            {
+                MessageBox.Show("Debe completar todos los campos");
+                return;
+            }
+            MetodosAbiertos metodosAbiertos = new MetodosAbiertos();
+            Resultado resultado = metodosAbiertos.UseSecante(TextBoxFuncion.Text, double.Parse(TextBoxTolerancia.Text), int.Parse(TextBoxIteraciones.Text), double.Parse(TextBoxXi.Text), double.Parse(TextBoxXd.Text));
+            if (!resultado.Sucess)
+            {
+                TextBoxConvergenciaResult.Text = "No";
+                TextBoxXrResult.Text = "No se encontró la raíz";
+                TextBoxErrorRelativoResult.Text = "-";
+                TextBoxIteracionesResult.Text = resultado.CantidadIteraciones.ToString();
+                TextBoxObservaciones.Text = "No fue posible encontrar la raíz debido a que la pendiente es igual a 0";
+                return;
+            }
+            TextBoxConvergenciaResult.Text = resultado.Converge ? "Sí" : "No";
+            TextBoxXrResult.Text = Math.Round(resultado.ValorXr, 4).ToString();
+            TextBoxErrorRelativoResult.Text = Math.Round(resultado.ErrorRelativo, 4).ToString();
+            TextBoxIteracionesResult.Text = resultado.CantidadIteraciones.ToString();
+
+            TextBoxObservaciones.Text = resultado.Converge
+                ? "Felicitaciones, el método converge y se ha encontrado la raíz en el intervalo proporcionado."
+                : "El método llegó a la cantidad de iteraciones y no encontró la raíz exacta.";
 
         }
+
     }
 }

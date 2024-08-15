@@ -54,9 +54,63 @@ namespace AnalisisNumerico.Metodos.Unidad_1
             xi = xr; //acá volvería hasta arriba de donde calcula la derivada, pero el tema es que condición ponerle al while
             return rta; 
         }
+
+
         public Resultado UseSecante(string funcion, double tolerancia, int cantidadIteraciones, double xi, double xd)
         {
             Resultado resultado = new Resultado();
+            Calculo analizadorFuncion = new Calculo();
+            int contadorIteraciones = 0;
+
+            analizadorFuncion.Sintaxis(funcion, 'x');
+
+            if (analizadorFuncion.EvaluaFx(xi) == 0)
+            {
+                resultado.ValorXr = xi;
+                resultado.Converge = true;
+                resultado.Sucess = true;
+                return resultado;
+            }
+            if (analizadorFuncion.EvaluaFx(xd) == 0)
+            {
+                resultado.ValorXr = xd;
+                resultado.Converge = true;
+                resultado.Sucess = true;
+                return resultado;
+            }
+            double error = 0;
+            double xr = 0;
+            while (contadorIteraciones < cantidadIteraciones)
+            {
+                if (analizadorFuncion.EvaluaFx(xi) - analizadorFuncion.EvaluaFx(xd) == 0)
+                {
+                    resultado.Sucess = false;
+                    resultado.Converge = false;
+                    return resultado;
+                }
+
+                contadorIteraciones++;
+                xr = (analizadorFuncion.EvaluaFx(xi) * xd - analizadorFuncion.EvaluaFx(xd) * xi) / (analizadorFuncion.EvaluaFx(xi) - analizadorFuncion.EvaluaFx(xd));
+
+                error = Math.Abs((xr - xd) / xr);
+                xi = xd;
+                xd = xr;
+
+                if (error < tolerancia)
+                {
+                    resultado.ValorXr = xr;
+                    resultado.ErrorRelativo = error;
+                    resultado.CantidadIteraciones = contadorIteraciones;
+                    resultado.Sucess = true;
+                    resultado.Converge = true;
+                    return resultado;
+                }
+            }
+            resultado.Sucess = true;
+            resultado.Converge = false;
+            resultado.ValorXr = xr;
+            resultado.CantidadIteraciones = contadorIteraciones;
+            resultado.ErrorRelativo = error;
             return resultado;
         }
     }
