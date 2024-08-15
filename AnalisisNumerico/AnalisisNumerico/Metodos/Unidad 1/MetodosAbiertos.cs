@@ -11,49 +11,67 @@ namespace AnalisisNumerico.Metodos.Unidad_1
 {
     public class MetodosAbiertos
     {
-        public Resultado UseNewtonRaphson(string funcion, double tolerancia, int cantidaditeraciones, double xi)
+        public Resultado UseNewtonRaphson(string funcion, double tolerancia, int cantidadIteraciones, double xi)
         {
-            //Inicializamos las variables
             Resultado rta = new Resultado();
             Calculo analizadorFuncion = new Calculo();
-            int contadoriteraciones = 0;
-            double xanterior = 0;
-            Console.WriteLine("Ingrese el valor de xi");
-            xi = double.Parse(Console.ReadLine());
-            double valorabsoluto = Math.Abs(analizadorFuncion.EvaluaFx(xi)); //Por acá habría que comenzar un while, el tema es con que condicion
-            if (valorabsoluto < tolerancia) {  //Esto en caso de que xi sea la raíz de una
-            rta.ValorXr = xi;
-                rta.Sucess = true;
-                rta.Converge = true;
-                rta.ErrorRelativo = 0;
-                rta.CantidadIteraciones = contadoriteraciones;
-                return rta;
-            }
-            contadoriteraciones++;
-            double derivada = ((analizadorFuncion.EvaluaFx(xi) + tolerancia ) - analizadorFuncion.EvaluaFx(xi)) / tolerancia;
-            if (derivada == 0) {
-                Console.WriteLine("No se encuentra la Raíz");
-                rta.Sucess = false; 
-                rta.Converge = false;
-                rta.ValorXr = 0; //El valor sería nulo?
-                rta.ErrorRelativo = 0; //Hay que ver el calculo del error relativo ((xri+1 - xri) / xri+1)
-                return rta;
-            }
-            double xr = xi - (analizadorFuncion.EvaluaFx(xi) / derivada);
-            double Error = 0; //((abs(xr - xant)) / xr)  ???
-            if (Math.Abs(analizadorFuncion.EvaluaFx(xr)) < tolerancia || Error < tolerancia || cantidaditeraciones < contadoriteraciones)
+            int contadorIteraciones = 0;
+            double xanterior = xi;
+            double xr = xi;
+            double errorRelativo = double.MaxValue;
+            analizadorFuncion.Sintaxis(funcion, 'x');
+
+            // Bucle que se ejecuta mientras no se alcance la tolerancia o el máximo de iteraciones
+            while (contadorIteraciones < cantidadIteraciones && errorRelativo > tolerancia)
             {
-                rta.ValorXr = xr;
-                rta.ErrorRelativo = 0;
-                rta.Sucess = true;
-                rta.Converge = true;
-                rta.CantidadIteraciones = contadoriteraciones;
-                return rta;
+                // Evaluamos la función y su derivada en el punto xi
+                double fxi = analizadorFuncion.EvaluaFx(xi);
+                double derivada = (analizadorFuncion.EvaluaFx(xi + tolerancia) - fxi) / tolerancia;
+
+                if (Math.Abs(derivada) < double.Epsilon)
+                {
+                    // La derivada es cero, no podemos continuar
+                    Console.WriteLine("Derivada es cero. No se puede continuar.");
+                    rta.Sucess = false;
+                    rta.Converge = false;
+                    rta.ValorXr = double.NaN;
+                    rta.ErrorRelativo = errorRelativo;
+                    rta.CantidadIteraciones = contadorIteraciones;
+                    return rta;
+                }
+
+                // Calculamos el siguiente valor de xr usando Newton-Raphson
+                xr = xi - (fxi / derivada);
+
+                // Calculamos el error relativo
+                errorRelativo = Math.Abs((xr - xi) / xr);
+
+                // Si el error es menor que la tolerancia, hemos encontrado la raíz
+                if (errorRelativo < tolerancia)
+                {
+                    rta.ValorXr = xr;
+                    rta.ErrorRelativo = errorRelativo;
+                    rta.Sucess = true;
+                    rta.Converge = true;
+                    rta.CantidadIteraciones = contadorIteraciones;
+                    return rta;
+                }
+
+                // Preparamos para la siguiente iteración
+                xi = xr;
+                contadorIteraciones++;
             }
-            xanterior = xr;
-            xi = xr; //acá volvería hasta arriba de donde calcula la derivada, pero el tema es que condición ponerle al while
-            return rta; 
+
+            // Si salimos del bucle, puede ser que no convergió
+            rta.ValorXr = xr;
+            rta.ErrorRelativo = errorRelativo;
+            rta.Sucess = errorRelativo < tolerancia;
+            rta.Converge = rta.Sucess;
+            rta.CantidadIteraciones = contadorIteraciones;
+
+            return rta;
         }
+
 
 
         public Resultado UseSecante(string funcion, double tolerancia, int cantidadIteraciones, double xi, double xd)

@@ -1,4 +1,6 @@
-﻿using Calculus;
+﻿using AnalisisNumerico.Metodos.Unidad_1;
+using AnalisisNumericos;
+using Calculus;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -122,7 +124,25 @@ namespace AnalisisNumerico.Forms
 
         private void BtnCalcularRaiz_Click(object sender, EventArgs e)
         {
+            MetodosAbiertos metodo = new MetodosAbiertos();
+            if (string.IsNullOrWhiteSpace(TextBoxFuncion.Text) || string.IsNullOrWhiteSpace(TextBoxIteraciones.Text) || string.IsNullOrWhiteSpace(TextBoxTolerancia.Text) || string.IsNullOrWhiteSpace(TextBoxXi.Text))
+            {
+                MessageBox.Show("Debe completar todos los campos");
+                return;
+            }
+            Resultado resultado = metodo.UseNewtonRaphson(TextBoxFuncion.Text, double.Parse(TextBoxTolerancia.Text), int.Parse(TextBoxIteraciones.Text), double.Parse(TextBoxXi.Text));
+            if (!resultado.Sucess) {
+                MessageBox.Show($"No se pudo encontrar la Raíz con el punto de inicio en [{int.Parse(TextBoxXi.Text)}].");
+                TextBoxXi.Clear();
+                return;
+            }
+            TextBoxConvergenciaResult.Text = resultado.Converge ? "Si" : "No";
+            TextBoxXrResult.Text = Math.Round(resultado.ValorXr, 4).ToString();
+            TextBoxErrorRelativoResult.Text = Math.Round(resultado.ErrorRelativo, 4).ToString();
+            TextBoxIteracionesResult.Text = resultado.CantidadIteraciones.ToString();
 
+            TextBoxObservaciones.Text = resultado.Converge
+                ? "Se pudo encontrar la raíz según el punto xi proporcionado." : "No se pudo encontrar la Raíz con el punto xi proporcionado."; 
         }
 
         private void TextBoxIteraciones_KeyPress(object sender, KeyPressEventArgs e)
