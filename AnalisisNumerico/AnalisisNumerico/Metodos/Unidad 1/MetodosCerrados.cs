@@ -109,72 +109,86 @@ namespace AnalisisNumerico.Metodos.Unidad_1
             return resultado;
         }
         //Hay que chequear que hay que corregir en este
-        public Resultado UseReglaFalsa(string funcion, double tolerancia, int cantidadIteraciones)
+        public Resultado UseReglaFalsa(string funcion, double tolerancia, int cantidadIteraciones, double xi, double xd)
         {
             Resultado resultado = new Resultado();
             Calculo analizadorFuncion = new Calculo();
             double xrAnterior = 0;
-            int contadorIteraciones = 0;
+            int contadorIteraciones = 0; 
+            analizadorFuncion.Sintaxis(funcion, 'x');
 
-            Console.WriteLine("Ingrese el valor de xi:");
-            double xi = double.Parse(Console.ReadLine());
-            Console.WriteLine("Ingrese el valor de xd:");
-            double xd = double.Parse(Console.ReadLine());
+            double fxI = analizadorFuncion.EvaluaFx(xi);
+            double fxD = analizadorFuncion.EvaluaFx(xd);
 
-            // Lógica para cuando se ingresa el intervalo y uno de los extremos es raíz o los extremos no contienen la raíz.
-            while (analizadorFuncion.EvaluaFx(xi) * analizadorFuncion.EvaluaFx(xd) >= 0)
+            if (fxI * fxD > 0)
             {
-                if (analizadorFuncion.EvaluaFx(xi) * analizadorFuncion.EvaluaFx(xd) == 0)
-                {
-                    resultado.ValorXr = analizadorFuncion.EvaluaFx(xi) == 0 ? xi : xd;
-                    resultado.ErrorRelativo = 0;
-                    resultado.CantidadIteraciones = contadorIteraciones;
-                    resultado.Sucess = true;
-                    break;
-                }
-                Console.WriteLine($"El intervalo [{xi}, {xd}] no contiene a la raíz. Ingrese nuevamente el intervalo.");
-                Console.WriteLine("Ingrese el valor de xi:");
-                xi = double.Parse(Console.ReadLine());
-                Console.WriteLine("Ingrese el valor de xd:");
-                xd = double.Parse(Console.ReadLine());
+                resultado.Converge = false;
+                resultado.Sucess = false;
+                return resultado;
+            }
+            if (fxI * fxD == 0)
+            {
+                resultado.ValorXr = analizadorFuncion.EvaluaFx(xi) == 0 ? xi : xd;
+                resultado.Converge = true;
+                resultado.Sucess = true;
+                resultado.ErrorRelativo = 0;
+                resultado.CantidadIteraciones = 0;
+                return resultado;
             }
 
-            if (resultado.Sucess) return resultado;
-
-            // Lógica para hacer el método de la Regla Falsa en sí.
-            while (true)
-            {
+            while (cantidadIteraciones > contadorIteraciones) {
                 contadorIteraciones++;
-                double fxi = analizadorFuncion.EvaluaFx(xi);
-                double fxd = analizadorFuncion.EvaluaFx(xd);
-                double xr = xd - (fxd * (xd - xi)) / (fxd - fxi);
+                double xr = ((analizadorFuncion.EvaluaFx(xd) * xi - analizadorFuncion.EvaluaFx(xi) * xd) / analizadorFuncion.EvaluaFx(xd) - analizadorFuncion.EvaluaFx(xi));
                 double fxr = analizadorFuncion.EvaluaFx(xr);
+                double error = (contadorIteraciones == 1) ? 0 : Math.Abs((xr - xrAnterior) / xr);
 
-                double error = Math.Abs((xr - xrAnterior) / xr);
-
-                if (fxr < tolerancia || contadorIteraciones > cantidadIteraciones || error < tolerancia)
+                // Verificar si se ha alcanzado la tolerancia o si el método ha convergido
+                if (contadorIteraciones == 1)
                 {
-                    resultado.ValorXr = xr;
-                    resultado.ErrorRelativo = error;
-                    resultado.CantidadIteraciones = contadorIteraciones;
-                    resultado.Sucess = true;
-                    break;
+                    if (Math.Abs(fxr) < tolerancia)
+                    {
+                        resultado.ValorXr = xr;
+                        resultado.ErrorRelativo = error;
+                        resultado.CantidadIteraciones = contadorIteraciones;
+                        resultado.Converge = true;
+                        resultado.Sucess = true;
+                        return resultado;
+                    }
                 }
                 else
                 {
-                    if (fxi * fxr < 0)
+                    if (Math.Abs(fxr) < tolerancia || error < tolerancia)
                     {
-                        xd = xr;
+                        resultado.ValorXr = xr;
+                        resultado.ErrorRelativo = error;
+                        resultado.CantidadIteraciones = contadorIteraciones;
+                        resultado.Converge = true;
+                        resultado.Sucess = true;
+                        return resultado;
                     }
-                    else
-                    {
-                        xi = xr;
-                    }
-                    xrAnterior = xr;
                 }
+                if (fxI * fxr < 0)
+                {
+                    xd = xr;
+                    fxD = fxr;
+                }
+                else
+                {
+                    xi = xr;
+                    fxI = fxr;
+                }
+
+                xrAnterior = xr;
             }
 
+            // Si se alcanzó el máximo de iteraciones sin converger
+            resultado.ValorXr = (xi + xd) / 2;
+            resultado.ErrorRelativo = Math.Abs((resultado.ValorXr - xrAnterior) / resultado.ValorXr);
+            resultado.CantidadIteraciones = contadorIteraciones;
+            resultado.Converge = false;
+            resultado.Sucess = true;
             return resultado;
         }
     }
 }
+
