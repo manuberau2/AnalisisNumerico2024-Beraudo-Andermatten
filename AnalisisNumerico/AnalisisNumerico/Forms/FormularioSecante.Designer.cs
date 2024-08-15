@@ -34,6 +34,8 @@
             TextBoxFuncion = new TextBox();
             BtnVerFuncion = new Button();
             BtnCalcularRaiz = new Button();
+            TextBoxXd = new TextBox();
+            label8 = new Label();
             label6 = new Label();
             TextBoxIteraciones = new TextBox();
             TextBoxXi = new TextBox();
@@ -51,8 +53,6 @@
             label1 = new Label();
             label10 = new Label();
             label12 = new Label();
-            TextBoxXd = new TextBox();
-            label8 = new Label();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -113,6 +113,7 @@
             TextBoxFuncion.Name = "TextBoxFuncion";
             TextBoxFuncion.Size = new Size(333, 39);
             TextBoxFuncion.TabIndex = 2;
+            TextBoxFuncion.Validating += TextBoxFuncion_Validating;
             // 
             // BtnVerFuncion
             // 
@@ -125,6 +126,7 @@
             BtnVerFuncion.TabIndex = 10;
             BtnVerFuncion.Text = "Ver función";
             BtnVerFuncion.UseVisualStyleBackColor = true;
+            BtnVerFuncion.Click += BtnVerFuncion_Click;
             // 
             // BtnCalcularRaiz
             // 
@@ -136,6 +138,28 @@
             BtnCalcularRaiz.TabIndex = 11;
             BtnCalcularRaiz.Text = "Calcular raíz";
             BtnCalcularRaiz.UseVisualStyleBackColor = true;
+            BtnCalcularRaiz.Click += BtnCalcularRaiz_Click;
+            // 
+            // TextBoxXd
+            // 
+            TextBoxXd.Location = new Point(218, 312);
+            TextBoxXd.Margin = new Padding(2);
+            TextBoxXd.Name = "TextBoxXd";
+            TextBoxXd.Size = new Size(160, 39);
+            TextBoxXd.TabIndex = 14;
+            TextBoxXd.KeyPress += TextBoxXd_KeyPress;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label8.ForeColor = Color.FromArgb(223, 225, 210);
+            label8.Location = new Point(277, 270);
+            label8.Margin = new Padding(2, 0, 2, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(49, 32);
+            label8.TabIndex = 15;
+            label8.Text = "Xd:";
             // 
             // label6
             // 
@@ -156,6 +180,8 @@
             TextBoxIteraciones.Name = "TextBoxIteraciones";
             TextBoxIteraciones.Size = new Size(333, 39);
             TextBoxIteraciones.TabIndex = 3;
+            TextBoxIteraciones.KeyPress += TextBoxIteraciones_KeyPress;
+            TextBoxIteraciones.Validating += TextBoxIteraciones_Validating;
             // 
             // TextBoxXi
             // 
@@ -164,6 +190,7 @@
             TextBoxXi.Name = "TextBoxXi";
             TextBoxXi.Size = new Size(160, 39);
             TextBoxXi.TabIndex = 12;
+            TextBoxXi.KeyPress += TextBoxXi_KeyPress;
             // 
             // label7
             // 
@@ -196,6 +223,8 @@
             TextBoxTolerancia.Name = "TextBoxTolerancia";
             TextBoxTolerancia.Size = new Size(333, 39);
             TextBoxTolerancia.TabIndex = 4;
+            TextBoxTolerancia.KeyPress += TextBoxTolerancia_KeyPress;
+            TextBoxTolerancia.Validating += TextBoxTolerancia_Validating;
             // 
             // groupBox2
             // 
@@ -326,26 +355,6 @@
             label12.Size = new Size(209, 32);
             label12.TabIndex = 9;
             label12.Text = "ERROR RELATIVO:";
-            // 
-            // TextBoxXd
-            // 
-            TextBoxXd.Location = new Point(218, 312);
-            TextBoxXd.Margin = new Padding(2);
-            TextBoxXd.Name = "TextBoxXd";
-            TextBoxXd.Size = new Size(160, 39);
-            TextBoxXd.TabIndex = 14;
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.ForeColor = Color.FromArgb(223, 225, 210);
-            label8.Location = new Point(277, 270);
-            label8.Margin = new Padding(2, 0, 2, 0);
-            label8.Name = "label8";
-            label8.Size = new Size(49, 32);
-            label8.TabIndex = 15;
-            label8.Text = "Xd:";
             // 
             // FormularioSecante
             // 

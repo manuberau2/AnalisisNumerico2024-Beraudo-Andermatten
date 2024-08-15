@@ -11,7 +11,7 @@ namespace AnalisisNumerico.Metodos.Unidad_1
 {
     public class MetodosAbiertos
     {
-        public Resultado MetodoNewtonRaphson(string funcion, double tolerancia, int cantidaditeraciones)
+        public Resultado UseNewtonRaphson(string funcion, double tolerancia, int cantidaditeraciones, double xi)
         {
             //Inicializamos las variables
             Resultado rta = new Resultado();
@@ -19,7 +19,7 @@ namespace AnalisisNumerico.Metodos.Unidad_1
             int contadoriteraciones = 0;
             double xanterior = 0;
             Console.WriteLine("Ingrese el valor de xi");
-            double xi = double.Parse(Console.ReadLine());
+            xi = double.Parse(Console.ReadLine());
             double valorabsoluto = Math.Abs(analizadorFuncion.EvaluaFx(xi)); //Por acá habría que comenzar un while, el tema es con que condicion
             if (valorabsoluto < tolerancia) {  //Esto en caso de que xi sea la raíz de una
             rta.ValorXr = xi;
@@ -53,6 +53,11 @@ namespace AnalisisNumerico.Metodos.Unidad_1
             xanterior = xr;
             xi = xr; //acá volvería hasta arriba de donde calcula la derivada, pero el tema es que condición ponerle al while
             return rta; 
+        }
+        public Resultado UseSecante(string funcion, double tolerancia, int cantidadIteraciones, double xi, double xd)
+        {
+            Resultado resultado = new Resultado();
+            return resultado;
         }
     }
 }

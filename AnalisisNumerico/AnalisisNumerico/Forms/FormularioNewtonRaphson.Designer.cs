@@ -285,6 +285,7 @@
             TextBoxIteraciones.Name = "TextBoxIteraciones";
             TextBoxIteraciones.Size = new Size(333, 39);
             TextBoxIteraciones.TabIndex = 3;
+            TextBoxIteraciones.KeyPress += TextBoxIteraciones_KeyPress;
             TextBoxIteraciones.Validating += TextBoxIteraciones_Validating;
             // 
             // TextBoxXi
@@ -327,6 +328,7 @@
             TextBoxTolerancia.Name = "TextBoxTolerancia";
             TextBoxTolerancia.Size = new Size(333, 39);
             TextBoxTolerancia.TabIndex = 4;
+            TextBoxTolerancia.KeyPress += TextBoxTolerancia_KeyPress;
             TextBoxTolerancia.Validating += TextBoxTolerancia_Validating;
             // 
             // FormularioNewtonRaphson
