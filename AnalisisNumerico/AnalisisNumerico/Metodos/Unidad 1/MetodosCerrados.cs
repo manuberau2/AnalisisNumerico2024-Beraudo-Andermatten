@@ -138,7 +138,7 @@ namespace AnalisisNumerico.Metodos.Unidad_1
 
             while (cantidadIteraciones > contadorIteraciones) {
                 contadorIteraciones++;
-                double xr = ((analizadorFuncion.EvaluaFx(xd) * xi - analizadorFuncion.EvaluaFx(xi) * xd) / analizadorFuncion.EvaluaFx(xd) - analizadorFuncion.EvaluaFx(xi));
+                double xr = ((fxD * xi - fxI * xd) / (fxD - fxI));
                 double fxr = analizadorFuncion.EvaluaFx(xr);
                 double error = (contadorIteraciones == 1) ? 0 : Math.Abs((xr - xrAnterior) / xr);
 
