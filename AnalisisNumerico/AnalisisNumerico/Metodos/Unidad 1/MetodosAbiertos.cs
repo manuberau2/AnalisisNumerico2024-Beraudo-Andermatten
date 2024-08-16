@@ -16,7 +16,6 @@ namespace AnalisisNumerico.Metodos.Unidad_1
             Resultado rta = new Resultado();
             Calculo analizadorFuncion = new Calculo();
             int contadorIteraciones = 0;
-            double xanterior = xi;
             double xr = xi;
             double errorRelativo = double.MaxValue;
             analizadorFuncion.Sintaxis(funcion, 'x');

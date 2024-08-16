@@ -178,14 +178,6 @@ namespace AnalisisNumerico.Forms
                 return;
             }
             Resultado resultado = metodoreglafalsa.UseReglaFalsa(TextBoxFuncion.Text, double.Parse(TextBoxTolerancia.Text), int.Parse(TextBoxIteraciones.Text), double.Parse(TextBoxXi.Text), double.Parse(TextBoxXd.Text));
-            // Verificar si el intervalo no es válido
-            if (!resultado.Sucess)
-            {
-                MessageBox.Show($"El intervalo [{TextBoxXi.Text}, {TextBoxXd.Text}] no contiene una raíz. Ingrese nuevos valores.");
-                TextBoxXi.Clear();
-                TextBoxXd.Clear();
-                return;
-            }
 
             // Mostrar los resultados dependiendo de la convergencia
             TextBoxConvergenciaResult.Text = resultado.Converge ? "Sí" : "No";
@@ -195,7 +187,15 @@ namespace AnalisisNumerico.Forms
 
             TextBoxObservaciones.Text = resultado.Converge
                 ? "Felicitaciones, el método converge y se ha encontrado la raíz en el intervalo proporcionado."
-                : "El método llegó a la cantidad de iteraciones y no encontró la raíz exacta.";
+                : $"El método llegó a la cantidad de iteraciones y no encontró la raíz exacta. El intervalo [{TextBoxXi.Text}, {TextBoxXd.Text}] no contiene una raíz. Ingrese nuevos valores.";
+
+            // Verificar si el intervalo no es válido
+            if (!resultado.Sucess)
+            {
+                TextBoxXi.Clear();
+                TextBoxXd.Clear();
+            }
+            return;
         }
     }
 }

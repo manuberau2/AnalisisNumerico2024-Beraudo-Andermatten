@@ -126,15 +126,7 @@ namespace AnalisisNumerico.Forms
                 return;
             }
             Resultado resultado = metodosCerrados.UseBiseccion(TextBoxFuncion.Text, double.Parse(TextBoxTolerancia.Text), int.Parse(TextBoxIteraciones.Text), double.Parse(TextBoxXi.Text), double.Parse(TextBoxXd.Text));
-            // Verificar si el intervalo no es válido
-            if (!resultado.Sucess)
-            {
-                MessageBox.Show($"El intervalo [{TextBoxXi.Text}, {TextBoxXd.Text}] no contiene una raíz. Ingrese nuevos valores.");
-                TextBoxXi.Clear();
-                TextBoxXd.Clear();
-                return;
-            }
-
+            
             // Mostrar los resultados dependiendo de la convergencia
             TextBoxConvergenciaResult.Text = resultado.Converge ? "Sí" : "No";
             TextBoxXrResult.Text = Math.Round(resultado.ValorXr, 4).ToString();
@@ -143,7 +135,15 @@ namespace AnalisisNumerico.Forms
 
             TextBoxObservaciones.Text = resultado.Converge
                 ? "Felicitaciones, el método converge y se ha encontrado la raíz en el intervalo proporcionado."
-                : "El método llegó a la cantidad de iteraciones y no encontró la raíz exacta.";
+                : $"El método llegó a la cantidad de iteraciones y no encontró la raíz exacta. La raíz no se encuentra en el intervalo [{TextBoxXi.Text}-{TextBoxXd.Text}], ingrese nuevos valores.";
+            
+            // Verificar si el intervalo no es válido
+            if (!resultado.Sucess)
+            {
+                TextBoxXi.Clear();
+                TextBoxXd.Clear();
+            }
+            return;
         }
 
         private void TextBoxXi_KeyPress(object sender, KeyPressEventArgs e)
