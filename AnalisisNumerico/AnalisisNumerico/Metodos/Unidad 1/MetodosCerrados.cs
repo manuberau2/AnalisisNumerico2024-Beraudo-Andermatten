@@ -52,6 +52,7 @@ namespace AnalisisNumerico.Metodos.Unidad_1
 
             double xrAnterior = 0;
             int contadorIteraciones = 0;
+            double error = double.MaxValue;
 
             // Lógica del método de bisección
             while (contadorIteraciones < cantidadIteraciones)
@@ -59,31 +60,17 @@ namespace AnalisisNumerico.Metodos.Unidad_1
                 contadorIteraciones++;
                 double xr = (xi + xd) / 2;
                 double fxr = analizadorFuncion.EvaluaFx(xr);
-                double error = (contadorIteraciones == 1) ? 0 : Math.Abs((xr - xrAnterior) / xr);
+                error =Math.Abs((xr - xrAnterior) / xr);
 
                 // Verificar si se ha alcanzado la tolerancia o si el método ha convergido
-                if (contadorIteraciones == 1)
+                if (Math.Abs(fxr) < tolerancia || error < tolerancia)
                 {
-                    if (Math.Abs(fxr) < tolerancia)
-                    {
-                        resultado.ValorXr = xr;
-                        resultado.ErrorRelativo = error;
-                        resultado.CantidadIteraciones = contadorIteraciones;
-                        resultado.Converge = true;
-                        resultado.Sucess = true;
-                        return resultado;
-                    }
-                } else
-                {
-                    if (Math.Abs(fxr) < tolerancia || error < tolerancia)
-                    {
-                        resultado.ValorXr = xr;
-                        resultado.ErrorRelativo = error;
-                        resultado.CantidadIteraciones = contadorIteraciones;
-                        resultado.Converge = true;
-                        resultado.Sucess = true;
-                        return resultado;
-                    }
+                    resultado.ValorXr = xr;
+                    resultado.ErrorRelativo = error;
+                    resultado.CantidadIteraciones = contadorIteraciones;
+                    resultado.Converge = true;
+                    resultado.Sucess = true;
+                    return resultado;
                 }
                 if (fxI * fxr < 0)
                 {
@@ -103,7 +90,7 @@ namespace AnalisisNumerico.Metodos.Unidad_1
             resultado.ValorXr = (xi + xd) / 2;
             resultado.ErrorRelativo = Math.Abs((resultado.ValorXr - xrAnterior) / resultado.ValorXr);
             resultado.CantidadIteraciones = contadorIteraciones;
-            resultado.Converge = false;
+            resultado.Converge = resultado.ErrorRelativo < tolerancia;
             resultado.Sucess = true;
 
             return resultado;
