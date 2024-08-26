@@ -81,6 +81,7 @@ namespace AnalisisNumerico.Metodos.Unidad_1
 
             analizadorFuncion.Sintaxis(funcion, 'x');
 
+            // Comprobar si xi o xd ya son raíces
             if (analizadorFuncion.EvaluaFx(xi) == 0)
             {
                 resultado.ValorXr = xi;
@@ -95,21 +96,27 @@ namespace AnalisisNumerico.Metodos.Unidad_1
                 resultado.Sucess = true;
                 return resultado;
             }
+
             double error = 0;
             double xr = 0;
+
             while (contadorIteraciones < cantidadIteraciones)
             {
-                if (analizadorFuncion.EvaluaFx(xi) - analizadorFuncion.EvaluaFx(xd) == 0)
+                contadorIteraciones++;
+                // Verificar si se produce un NaN o infinito
+                double fxi = analizadorFuncion.EvaluaFx(xi);
+                double fxd = analizadorFuncion.EvaluaFx(xd);
+                double denominador = fxi - fxd;
+                xr = (fxi * xd - fxd * xi) / denominador;
+                if (double.IsNaN(xr) || double.IsInfinity(xr))
                 {
                     resultado.Sucess = false;
                     resultado.Converge = false;
                     return resultado;
                 }
 
-                contadorIteraciones++;
-                xr = (analizadorFuncion.EvaluaFx(xi) * xd - analizadorFuncion.EvaluaFx(xd) * xi) / (analizadorFuncion.EvaluaFx(xi) - analizadorFuncion.EvaluaFx(xd));
-
                 error = Math.Abs((xr - xd) / xr);
+
                 xi = xd;
                 xd = xr;
 
@@ -123,6 +130,7 @@ namespace AnalisisNumerico.Metodos.Unidad_1
                     return resultado;
                 }
             }
+
             resultado.Sucess = true;
             resultado.Converge = false;
             resultado.ValorXr = xr;
@@ -130,5 +138,7 @@ namespace AnalisisNumerico.Metodos.Unidad_1
             resultado.ErrorRelativo = error;
             return resultado;
         }
+
+
     }
 }

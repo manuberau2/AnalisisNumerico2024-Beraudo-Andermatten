@@ -129,7 +129,7 @@ namespace AnalisisNumerico.Metodos.Unidad_1
                 double fxr = analizadorFuncion.EvaluaFx(xr);
                 double error = (contadorIteraciones == 1) ? 0 : Math.Abs((xr - xrAnterior) / xr);
 
-                // Verificar si se ha alcanzado la tolerancia o si el método ha convergido
+                
                 if (contadorIteraciones == 1)
                 {
                     if (Math.Abs(fxr) < tolerancia)
