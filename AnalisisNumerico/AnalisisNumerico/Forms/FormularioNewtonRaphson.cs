@@ -138,7 +138,7 @@ namespace AnalisisNumerico.Forms
             TextBoxIteracionesResult.Text = resultado.CantidadIteraciones.ToString();
 
             TextBoxObservaciones.Text = resultado.Converge
-                ? "Se pudo encontrar la raíz según el punto xi proporcionado." : $"No se pudo encontrar la Raíz con el punto xi proporcionado. No se pudo encontrar la Raíz con el punto de inicio en [{int.Parse(TextBoxXi.Text)}]."; 
+                ? "Se pudo encontrar la raíz según el punto xi proporcionado." : $"No se pudo encontrar la Raíz con el punto xi proporcionado."; 
             if (!resultado.Sucess) {
                 TextBoxXi.Clear();
             }
