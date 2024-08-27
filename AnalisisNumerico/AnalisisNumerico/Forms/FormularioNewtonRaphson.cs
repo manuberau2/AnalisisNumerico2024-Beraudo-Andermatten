@@ -131,17 +131,20 @@ namespace AnalisisNumerico.Forms
                 return;
             }
             Resultado resultado = metodo.UseNewtonRaphson(TextBoxFuncion.Text, double.Parse(TextBoxTolerancia.Text), int.Parse(TextBoxIteraciones.Text), double.Parse(TextBoxXi.Text));
-            
-            TextBoxConvergenciaResult.Text = resultado.Converge ? "Si" : "No";
+            if (!resultado.Sucess)
+            {
+                TextBoxConvergenciaResult.Text = "No";
+                TextBoxXrResult.Text = "No se encontró la raíz";
+                TextBoxErrorRelativoResult.Text = "-";
+                TextBoxIteracionesResult.Text = resultado.CantidadIteraciones.ToString();
+                TextBoxObservaciones.Text = "No fue posible encontrar la raíz";
+                return;
+            }
+            TextBoxConvergenciaResult.Text ="Si";
             TextBoxXrResult.Text = Math.Round(resultado.ValorXr, 4).ToString();
             TextBoxErrorRelativoResult.Text = Math.Round(resultado.ErrorRelativo, 4).ToString();
             TextBoxIteracionesResult.Text = resultado.CantidadIteraciones.ToString();
-
-            TextBoxObservaciones.Text = resultado.Converge
-                ? "Se pudo encontrar la raíz según el punto xi proporcionado." : $"No se pudo encontrar la Raíz con el punto xi proporcionado."; 
-            if (!resultado.Sucess) {
-                TextBoxXi.Clear();
-            }
+            TextBoxObservaciones.Text = "Se pudo encontrar la raíz según el punto xi proporcionado.";
             return;
         }
 

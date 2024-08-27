@@ -27,10 +27,8 @@ namespace AnalisisNumerico.Metodos.Unidad_1
                 double fxi = analizadorFuncion.EvaluaFx(xi);
                 double derivada = (analizadorFuncion.EvaluaFx(xi + tolerancia) - fxi) / tolerancia;
 
-                if (Math.Abs(derivada) < double.Epsilon)
+                if (Math.Abs(derivada) < tolerancia)
                 {
-                    // La derivada es cero, no podemos continuar
-                    Console.WriteLine("Derivada es cero. No se puede continuar.");
                     rta.Sucess = false;
                     rta.Converge = false;
                     rta.ValorXr = double.NaN;
@@ -41,6 +39,12 @@ namespace AnalisisNumerico.Metodos.Unidad_1
 
                 // Calculamos el siguiente valor de xr usando Newton-Raphson
                 xr = xi - (fxi / derivada);
+                if (double.IsNaN(xr) || double.IsInfinity(xr))
+                {
+                    rta.Sucess = false;
+                    rta.Converge = false;
+                    return rta;
+                }
 
                 // Calculamos el error relativo
                 errorRelativo = Math.Abs((xr - xi) / xr);
@@ -112,6 +116,7 @@ namespace AnalisisNumerico.Metodos.Unidad_1
                 {
                     resultado.Sucess = false;
                     resultado.Converge = false;
+                    resultado.CantidadIteraciones = contadorIteraciones;
                     return resultado;
                 }
 
