@@ -183,7 +183,7 @@ namespace AnalisisNumerico.Forms
                 TextBoxXrResult.Text = "No se encontró la raíz";
                 TextBoxErrorRelativoResult.Text = "-";
                 TextBoxIteracionesResult.Text = resultado.CantidadIteraciones.ToString();
-                TextBoxObservaciones.Text = "No fue posible encontrar la raíz";
+                TextBoxObservaciones.Text = $"No es posible encontrar la raíz de esta función";
                 return;
             }
             TextBoxConvergenciaResult.Text = resultado.Converge ? "Sí" : "No";
