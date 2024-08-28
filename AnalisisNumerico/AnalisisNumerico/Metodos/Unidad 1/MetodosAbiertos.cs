@@ -110,6 +110,15 @@ namespace AnalisisNumerico.Metodos.Unidad_1
                 // Verificar si se produce un NaN o infinito
                 double fxi = analizadorFuncion.EvaluaFx(xi);
                 double fxd = analizadorFuncion.EvaluaFx(xd);
+
+                if (fxi == fxd)
+                {
+                    resultado.Sucess = false;
+                    resultado.Converge = false;
+                    resultado.CantidadIteraciones = contadorIteraciones;
+                    return resultado;
+                }
+
                 double denominador = fxi - fxd;
                 xr = (fxi * xd - fxd * xi) / denominador;
                 if (double.IsNaN(xr) || double.IsInfinity(xr))
@@ -122,8 +131,6 @@ namespace AnalisisNumerico.Metodos.Unidad_1
 
                 error = Math.Abs((xr - xd) / xr);
 
-                xi = xd;
-                xd = xr;
 
                 if (error < tolerancia)
                 {
@@ -134,6 +141,8 @@ namespace AnalisisNumerico.Metodos.Unidad_1
                     resultado.Converge = true;
                     return resultado;
                 }
+                xi = xd;
+                xd = xr;
             }
 
             resultado.Sucess = true;
