@@ -45,10 +45,8 @@
             button14 = new Button();
             BtnUnidad3 = new Button();
             PanelUnidad2 = new Panel();
-            button6 = new Button();
-            button7 = new Button();
-            button8 = new Button();
-            button9 = new Button();
+            BtnGaussSeidel = new Button();
+            BtnGaussJordan = new Button();
             BtnUnidad2 = new Button();
             PanelUnidad1 = new Panel();
             BtnSecante = new Button();
@@ -100,7 +98,7 @@
             PanelUnidad4.Controls.Add(button18);
             PanelUnidad4.Controls.Add(button19);
             PanelUnidad4.Dock = DockStyle.Top;
-            PanelUnidad4.Location = new Point(0, 754);
+            PanelUnidad4.Location = new Point(0, 688);
             PanelUnidad4.Name = "PanelUnidad4";
             PanelUnidad4.Size = new Size(224, 243);
             PanelUnidad4.TabIndex = 7;
@@ -202,7 +200,7 @@
             BtnUnidad4.FlatAppearance.BorderSize = 0;
             BtnUnidad4.FlatStyle = FlatStyle.Flat;
             BtnUnidad4.ForeColor = Color.Gainsboro;
-            BtnUnidad4.Location = new Point(0, 709);
+            BtnUnidad4.Location = new Point(0, 643);
             BtnUnidad4.Name = "BtnUnidad4";
             BtnUnidad4.Padding = new Padding(10, 0, 0, 0);
             BtnUnidad4.Size = new Size(224, 45);
@@ -219,7 +217,7 @@
             PanelUnidad3.Controls.Add(button13);
             PanelUnidad3.Controls.Add(button14);
             PanelUnidad3.Dock = DockStyle.Top;
-            PanelUnidad3.Location = new Point(0, 552);
+            PanelUnidad3.Location = new Point(0, 486);
             PanelUnidad3.Name = "PanelUnidad3";
             PanelUnidad3.Size = new Size(224, 157);
             PanelUnidad3.TabIndex = 5;
@@ -291,7 +289,7 @@
             BtnUnidad3.FlatAppearance.BorderSize = 0;
             BtnUnidad3.FlatStyle = FlatStyle.Flat;
             BtnUnidad3.ForeColor = Color.Gainsboro;
-            BtnUnidad3.Location = new Point(0, 507);
+            BtnUnidad3.Location = new Point(0, 441);
             BtnUnidad3.Name = "BtnUnidad3";
             BtnUnidad3.Padding = new Padding(10, 0, 0, 0);
             BtnUnidad3.Size = new Size(224, 45);
@@ -303,76 +301,46 @@
             // PanelUnidad2
             // 
             PanelUnidad2.BackColor = Color.FromArgb(35, 32, 39);
-            PanelUnidad2.Controls.Add(button6);
-            PanelUnidad2.Controls.Add(button7);
-            PanelUnidad2.Controls.Add(button8);
-            PanelUnidad2.Controls.Add(button9);
+            PanelUnidad2.Controls.Add(BtnGaussSeidel);
+            PanelUnidad2.Controls.Add(BtnGaussJordan);
             PanelUnidad2.Dock = DockStyle.Top;
             PanelUnidad2.Location = new Point(0, 351);
             PanelUnidad2.Name = "PanelUnidad2";
-            PanelUnidad2.Size = new Size(224, 156);
+            PanelUnidad2.Size = new Size(224, 90);
             PanelUnidad2.TabIndex = 3;
             PanelUnidad2.Visible = false;
             // 
-            // button6
+            // BtnGaussSeidel
             // 
-            button6.Dock = DockStyle.Top;
-            button6.FlatAppearance.BorderSize = 0;
-            button6.FlatStyle = FlatStyle.Flat;
-            button6.ForeColor = Color.LightGray;
-            button6.Location = new Point(0, 114);
-            button6.Name = "button6";
-            button6.Padding = new Padding(35, 0, 0, 0);
-            button6.Size = new Size(224, 38);
-            button6.TabIndex = 3;
-            button6.Text = "button6";
-            button6.TextAlign = ContentAlignment.MiddleLeft;
-            button6.UseVisualStyleBackColor = true;
+            BtnGaussSeidel.Dock = DockStyle.Top;
+            BtnGaussSeidel.FlatAppearance.BorderSize = 0;
+            BtnGaussSeidel.FlatStyle = FlatStyle.Flat;
+            BtnGaussSeidel.ForeColor = Color.LightGray;
+            BtnGaussSeidel.Location = new Point(0, 38);
+            BtnGaussSeidel.Name = "BtnGaussSeidel";
+            BtnGaussSeidel.Padding = new Padding(35, 0, 0, 0);
+            BtnGaussSeidel.Size = new Size(224, 38);
+            BtnGaussSeidel.TabIndex = 1;
+            BtnGaussSeidel.Text = "Gauss-Seidel";
+            BtnGaussSeidel.TextAlign = ContentAlignment.MiddleLeft;
+            BtnGaussSeidel.UseVisualStyleBackColor = true;
+            BtnGaussSeidel.Click += BtnGaussSeidel_Click;
             // 
-            // button7
+            // BtnGaussJordan
             // 
-            button7.Dock = DockStyle.Top;
-            button7.FlatAppearance.BorderSize = 0;
-            button7.FlatStyle = FlatStyle.Flat;
-            button7.ForeColor = Color.LightGray;
-            button7.Location = new Point(0, 76);
-            button7.Name = "button7";
-            button7.Padding = new Padding(35, 0, 0, 0);
-            button7.Size = new Size(224, 38);
-            button7.TabIndex = 2;
-            button7.Text = "button7";
-            button7.TextAlign = ContentAlignment.MiddleLeft;
-            button7.UseVisualStyleBackColor = true;
-            // 
-            // button8
-            // 
-            button8.Dock = DockStyle.Top;
-            button8.FlatAppearance.BorderSize = 0;
-            button8.FlatStyle = FlatStyle.Flat;
-            button8.ForeColor = Color.LightGray;
-            button8.Location = new Point(0, 38);
-            button8.Name = "button8";
-            button8.Padding = new Padding(35, 0, 0, 0);
-            button8.Size = new Size(224, 38);
-            button8.TabIndex = 1;
-            button8.Text = "button8";
-            button8.TextAlign = ContentAlignment.MiddleLeft;
-            button8.UseVisualStyleBackColor = true;
-            // 
-            // button9
-            // 
-            button9.Dock = DockStyle.Top;
-            button9.FlatAppearance.BorderSize = 0;
-            button9.FlatStyle = FlatStyle.Flat;
-            button9.ForeColor = Color.LightGray;
-            button9.Location = new Point(0, 0);
-            button9.Name = "button9";
-            button9.Padding = new Padding(35, 0, 0, 0);
-            button9.Size = new Size(224, 38);
-            button9.TabIndex = 0;
-            button9.Text = "button9";
-            button9.TextAlign = ContentAlignment.MiddleLeft;
-            button9.UseVisualStyleBackColor = true;
+            BtnGaussJordan.Dock = DockStyle.Top;
+            BtnGaussJordan.FlatAppearance.BorderSize = 0;
+            BtnGaussJordan.FlatStyle = FlatStyle.Flat;
+            BtnGaussJordan.ForeColor = Color.LightGray;
+            BtnGaussJordan.Location = new Point(0, 0);
+            BtnGaussJordan.Name = "BtnGaussJordan";
+            BtnGaussJordan.Padding = new Padding(35, 0, 0, 0);
+            BtnGaussJordan.Size = new Size(224, 38);
+            BtnGaussJordan.TabIndex = 0;
+            BtnGaussJordan.Text = "Gauss-Jordan";
+            BtnGaussJordan.TextAlign = ContentAlignment.MiddleLeft;
+            BtnGaussJordan.UseVisualStyleBackColor = true;
+            BtnGaussJordan.Click += BtnGaussJordan_Click;
             // 
             // BtnUnidad2
             // 
@@ -388,6 +356,7 @@
             BtnUnidad2.Text = "Unidad 2";
             BtnUnidad2.TextAlign = ContentAlignment.MiddleLeft;
             BtnUnidad2.UseVisualStyleBackColor = true;
+            BtnUnidad2.Click += BtnUnidad2_Click;
             // 
             // PanelUnidad1
             // 
@@ -560,10 +529,8 @@
         private Button BtnReglaFalsa;
         private Button BtnUnidad3;
         private Panel PanelUnidad2;
-        private Button button6;
-        private Button button7;
-        private Button button8;
-        private Button button9;
+        private Button BtnGaussSeidel;
+        private Button BtnGaussJordan;
         private Button BtnUnidad2;
         private Panel PanelUnidad4;
         private Button button21;

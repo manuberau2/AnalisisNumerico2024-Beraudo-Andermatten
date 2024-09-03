@@ -1,16 +1,16 @@
-
 using AnalisisNumerico.Forms;
 
 namespace AnalisisNumerico
 {
-
     public partial class FormPrincipal : Form
     {
         public FormPrincipal()
         {
             InitializeComponent();
         }
+
         #region Funciones Submenus
+
         private void OcultarSubMenu()
         {
             if (PanelUnidad1.Visible == true)
@@ -30,6 +30,7 @@ namespace AnalisisNumerico
                 PanelUnidad4.Visible = false;
             }
         }
+
         private void MostrarSubMenu(Panel subMenu)
         {
             if (subMenu.Visible == false)
@@ -42,9 +43,11 @@ namespace AnalisisNumerico
                 subMenu.Visible = false;
             }
         }
-        #endregion
+
+        #endregion Funciones Submenus
 
         #region BotonesUnidad1
+
         private void BtnUnidad1_Click(object sender, EventArgs e)
         {
             MostrarSubMenu(PanelUnidad1);
@@ -77,8 +80,32 @@ namespace AnalisisNumerico
             //Abrir Formulario Secante
             OcultarSubMenu();
         }
-        #endregion
+
+        #endregion BotonesUnidad1
+
+        #region BotonesUnidad2
+
+        private void BtnUnidad2_Click(object sender, EventArgs e)
+        {
+            MostrarSubMenu(PanelUnidad2);
+        }
+
+        private void BtnGaussJordan_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormularioGaussJordan());
+            OcultarSubMenu();
+        }
+
+        private void BtnGaussSeidel_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormularioGaussSeidel());
+            OcultarSubMenu();
+        }
+
+        #endregion BotonesUnidad2
+
         private Form formularioActivo = null;
+
         private void AbrirFormularioHijo(Form formularioHijo)
         {
             if (formularioActivo != null)
