@@ -31,8 +31,9 @@
             label1 = new Label();
             label2 = new Label();
             TextBoxDimensionMatriz = new TextBox();
-            button1 = new Button();
-            button3 = new Button();
+            BtnGenerarMatriz = new Button();
+            BtnCalcular = new Button();
+            GroupBoxMatriz = new GroupBox();
             SuspendLayout();
             // 
             // label1
@@ -50,38 +51,49 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
             label2.ForeColor = Color.FromArgb(223, 225, 210);
-            label2.Location = new Point(12, 84);
+            label2.Location = new Point(2, 94);
             label2.Name = "label2";
-            label2.Size = new Size(524, 45);
+            label2.Size = new Size(492, 41);
             label2.TabIndex = 2;
             label2.Text = "Ingrese la dimensión de la matriz:";
             // 
             // TextBoxDimensionMatriz
             // 
-            TextBoxDimensionMatriz.Location = new Point(528, 94);
+            TextBoxDimensionMatriz.Location = new Point(500, 101);
             TextBoxDimensionMatriz.Name = "TextBoxDimensionMatriz";
             TextBoxDimensionMatriz.Size = new Size(52, 31);
             TextBoxDimensionMatriz.TabIndex = 3;
             // 
-            // button1
+            // BtnGenerarMatriz
             // 
-            button1.Location = new Point(637, 91);
-            button1.Name = "button1";
-            button1.Size = new Size(136, 37);
-            button1.TabIndex = 4;
-            button1.Text = "Generar matriz";
-            button1.UseVisualStyleBackColor = true;
+            BtnGenerarMatriz.Location = new Point(584, 98);
+            BtnGenerarMatriz.Name = "BtnGenerarMatriz";
+            BtnGenerarMatriz.Size = new Size(136, 37);
+            BtnGenerarMatriz.TabIndex = 4;
+            BtnGenerarMatriz.Text = "Generar matriz";
+            BtnGenerarMatriz.UseVisualStyleBackColor = true;
+            BtnGenerarMatriz.Click += BtnGenerarMatriz_Click;
             // 
-            // button3
+            // BtnCalcular
             // 
-            button3.Location = new Point(793, 91);
-            button3.Name = "button3";
-            button3.Size = new Size(136, 37);
-            button3.TabIndex = 6;
-            button3.Text = "Calcular";
-            button3.UseVisualStyleBackColor = true;
+            BtnCalcular.Location = new Point(726, 98);
+            BtnCalcular.Name = "BtnCalcular";
+            BtnCalcular.Size = new Size(136, 37);
+            BtnCalcular.TabIndex = 6;
+            BtnCalcular.Text = "Calcular";
+            BtnCalcular.UseVisualStyleBackColor = true;
+            // 
+            // GroupBoxMatriz
+            // 
+            GroupBoxMatriz.ForeColor = Color.FromArgb(223, 225, 210);
+            GroupBoxMatriz.Location = new Point(26, 141);
+            GroupBoxMatriz.Name = "GroupBoxMatriz";
+            GroupBoxMatriz.Size = new Size(894, 395);
+            GroupBoxMatriz.TabIndex = 7;
+            GroupBoxMatriz.TabStop = false;
+            GroupBoxMatriz.Text = "Matriz";
             // 
             // FormularioGaussJordan
             // 
@@ -89,8 +101,9 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(32, 30, 45);
             ClientSize = new Size(975, 548);
-            Controls.Add(button3);
-            Controls.Add(button1);
+            Controls.Add(GroupBoxMatriz);
+            Controls.Add(BtnCalcular);
+            Controls.Add(BtnGenerarMatriz);
             Controls.Add(TextBoxDimensionMatriz);
             Controls.Add(label2);
             Controls.Add(label1);
@@ -105,7 +118,8 @@
         private Label label1;
         private Label label2;
         private TextBox TextBoxDimensionMatriz;
-        private Button button1;
-        private Button button3;
+        private Button BtnGenerarMatriz;
+        private Button BtnCalcular;
+        private GroupBox GroupBoxMatriz;
     }
 }

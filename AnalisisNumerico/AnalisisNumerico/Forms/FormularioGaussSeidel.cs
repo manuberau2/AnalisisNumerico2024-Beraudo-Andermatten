@@ -16,6 +16,5 @@ namespace AnalisisNumerico.Forms
         {
             InitializeComponent();
         }
-
     }
 }

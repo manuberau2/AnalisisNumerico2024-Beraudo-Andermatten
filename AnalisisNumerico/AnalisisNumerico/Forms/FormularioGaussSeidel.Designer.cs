@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             label1 = new Label();
-            button3 = new Button();
-            button1 = new Button();
-            TextBoxDimensionMatriz = new TextBox();
-            label2 = new Label();
+            button2 = new Button();
+            button4 = new Button();
+            textBox1 = new TextBox();
+            label3 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -47,41 +47,41 @@
             label1.TabIndex = 0;
             label1.Text = "GAUSS-SEIDEL";
             // 
-            // button3
+            // button2
             // 
-            button3.Location = new Point(774, 81);
-            button3.Name = "button3";
-            button3.Size = new Size(136, 37);
-            button3.TabIndex = 10;
-            button3.Text = "Calcular";
-            button3.UseVisualStyleBackColor = true;
+            button2.Location = new Point(756, 67);
+            button2.Name = "button2";
+            button2.Size = new Size(136, 37);
+            button2.TabIndex = 14;
+            button2.Text = "Calcular";
+            button2.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // button4
             // 
-            button1.Location = new Point(632, 81);
-            button1.Name = "button1";
-            button1.Size = new Size(136, 37);
-            button1.TabIndex = 9;
-            button1.Text = "Generar matriz";
-            button1.UseVisualStyleBackColor = true;
+            button4.Location = new Point(614, 67);
+            button4.Name = "button4";
+            button4.Size = new Size(136, 37);
+            button4.TabIndex = 13;
+            button4.Text = "Generar matriz";
+            button4.UseVisualStyleBackColor = true;
             // 
-            // TextBoxDimensionMatriz
+            // textBox1
             // 
-            TextBoxDimensionMatriz.Location = new Point(529, 84);
-            TextBoxDimensionMatriz.Name = "TextBoxDimensionMatriz";
-            TextBoxDimensionMatriz.Size = new Size(52, 31);
-            TextBoxDimensionMatriz.TabIndex = 8;
+            textBox1.Location = new Point(510, 67);
+            textBox1.Name = "textBox1";
+            textBox1.Size = new Size(52, 31);
+            textBox1.TabIndex = 12;
             // 
-            // label2
+            // label3
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.ForeColor = Color.FromArgb(223, 225, 210);
-            label2.Location = new Point(12, 74);
-            label2.Name = "label2";
-            label2.Size = new Size(524, 45);
-            label2.TabIndex = 7;
-            label2.Text = "Ingrese la dimensión de la matriz:";
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = Color.FromArgb(223, 225, 210);
+            label3.Location = new Point(12, 63);
+            label3.Name = "label3";
+            label3.Size = new Size(492, 41);
+            label3.TabIndex = 11;
+            label3.Text = "Ingrese la dimensión de la matriz:";
             // 
             // FormularioGaussSeidel
             // 
@@ -89,10 +89,10 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(32, 30, 45);
             ClientSize = new Size(975, 548);
-            Controls.Add(button3);
-            Controls.Add(button1);
-            Controls.Add(TextBoxDimensionMatriz);
-            Controls.Add(label2);
+            Controls.Add(button2);
+            Controls.Add(button4);
+            Controls.Add(textBox1);
+            Controls.Add(label3);
             Controls.Add(label1);
             Name = "FormularioGaussSeidel";
             Text = "FormularioGaussSeidel";
@@ -103,9 +103,9 @@
         #endregion
 
         private Label label1;
-        private Button button3;
-        private Button button1;
-        private TextBox TextBoxDimensionMatriz;
-        private Label label2;
+        private Button button2;
+        private Button button4;
+        private TextBox textBox1;
+        private Label label3;
     }
 }
