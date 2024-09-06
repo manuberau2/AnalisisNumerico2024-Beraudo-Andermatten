@@ -115,13 +115,48 @@ namespace AnalisisNumerico.Forms
 
         private void BtnCalcular_Click(object sender, EventArgs e)
         {
-            double[,] matriz = GuardarMatriz(int.Parse(TextBoxDimensionMatriz.Text));
+            // Obtener la dimensión de la matriz desde el TextBox
+            int dimension = int.Parse(TextBoxDimensionMatriz.Text);
+
+            // Guardar la matriz ingresada por el usuario
+            double[,] matriz = GuardarMatriz(dimension);
             if (matriz == null)
             {
-                return;
+                return; // Si la matriz es inválida, no continuar
             }
-            Gauss_Jordan gauss_Jordan = new Gauss_Jordan();
-            ResultadoUnidad2 resultado = gauss_Jordan.GaussJordan(matriz);
+            Gauss_Jordan gauss_jordan = new Gauss_Jordan();
+            // Llamar al método Gauss-Jordan para obtener la matriz solución
+            ResultadoUnidad2 resultado = gauss_jordan.GaussJordan(matriz);
+
+            // Verificar si la operación fue exitosa
+            if (resultado.Sucess)
+            {
+                // Actualizar los TextBox con la matriz resultado
+                ActualizarTextBoxesConResultado(resultado.MatrizResultado, dimension);
+            }
+            else
+            {
+                // Mostrar el mensaje de error si la operación falla
+                MessageBox.Show("Error en el cálculo: " + resultado.MensajeError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void ActualizarTextBoxesConResultado(double[,] matrizResultado, int dimension)
+        {
+            for (int row = 0; row < dimension; row++)
+            {
+                for (int col = 0; col < dimension + 1; col++)
+                {
+                    string nombre = $"({row},{col})";
+                    TextBox textBox = GroupBoxMatriz.Controls.Find(nombre, true).FirstOrDefault() as TextBox;
+
+                    if (textBox != null)
+                    {
+                        // Actualizar el valor del TextBox con el valor de la matriz resultado
+                        textBox.Text = matrizResultado[row, col].ToString("F3"); // Formato de dos decimales
+                    }
+                }
+            }
         }
     }
 }
