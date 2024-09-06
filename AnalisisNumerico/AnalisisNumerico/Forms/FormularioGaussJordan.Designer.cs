@@ -84,6 +84,7 @@
             BtnCalcular.TabIndex = 6;
             BtnCalcular.Text = "Calcular";
             BtnCalcular.UseVisualStyleBackColor = true;
+            BtnCalcular.Click += BtnCalcular_Click;
             // 
             // GroupBoxMatriz
             // 

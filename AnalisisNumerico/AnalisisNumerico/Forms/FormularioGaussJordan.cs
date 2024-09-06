@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AnalisisNumerico.Metodos.Unidad_2;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -90,6 +91,37 @@ namespace AnalisisNumerico.Forms
 
                 GroupBoxMatriz.Show();
             }
+        }
+
+        private double[,] GuardarMatriz(int dimension)
+        {
+            double[,] matriz = new double[dimension, dimension + 1];
+            for (int row = 0; row < dimension; row++)
+            {
+                for (int col = 0; col < dimension + 1; col++)
+                {
+                    string nombre = $"({row},{col})";
+                    TextBox textBox = GroupBoxMatriz.Controls.Find(nombre, true).FirstOrDefault() as TextBox;
+                    if (!double.TryParse(textBox.Text, out double valor))
+                    {
+                        MessageBox.Show("Ingrese un valor válido en la matriz", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return null;
+                    }
+                    matriz[row, col] = valor;
+                }
+            }
+            return matriz;
+        }
+
+        private void BtnCalcular_Click(object sender, EventArgs e)
+        {
+            double[,] matriz = GuardarMatriz(int.Parse(TextBoxDimensionMatriz.Text));
+            if (matriz == null)
+            {
+                return;
+            }
+            Gauss_Jordan gauss_Jordan = new Gauss_Jordan();
+            ResultadoUnidad2 resultado = gauss_Jordan.GaussJordan(matriz);
         }
     }
 }
