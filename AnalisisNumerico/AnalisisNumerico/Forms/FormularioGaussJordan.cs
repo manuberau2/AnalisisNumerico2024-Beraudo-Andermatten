@@ -93,7 +93,7 @@ namespace AnalisisNumerico.Forms
             }
         }
 
-        private double[,] GuardarMatriz(int dimension)
+        private double[,]? GuardarMatriz(int dimension)
         {
             double[,] matriz = new double[dimension, dimension + 1];
             for (int row = 0; row < dimension; row++)
@@ -116,45 +116,71 @@ namespace AnalisisNumerico.Forms
         private void BtnCalcular_Click(object sender, EventArgs e)
         {
             // Obtener la dimensión de la matriz desde el TextBox
-            int dimension = int.Parse(TextBoxDimensionMatriz.Text);
-
+            if (!int.TryParse(TextBoxDimensionMatriz.Text, out int dimension))
+            {
+                MessageBox.Show("Indique la dimensión de la matriz", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Gauss_Jordan gauss_Jordan = new Gauss_Jordan();
             // Guardar la matriz ingresada por el usuario
-            double[,] matriz = GuardarMatriz(dimension);
+            double[,]? matriz = GuardarMatriz(dimension);
             if (matriz == null)
             {
                 return; // Si la matriz es inválida, no continuar
             }
-            Gauss_Jordan gauss_jordan = new Gauss_Jordan();
-            // Llamar al método Gauss-Jordan para obtener la matriz solución
-            ResultadoUnidad2 resultado = gauss_jordan.GaussJordan(matriz);
 
-            // Verificar si la operación fue exitosa
+            // Transformar en matriz identidad las TextBox correspondientes
+            TransformarEnMatrizIdentidad(dimension);
+
+            // Llamar al método de Gauss-Jordan para resolver el sistema
+            ResultadoUnidad2 resultado = gauss_Jordan.UseMethod(matriz);
+
             if (resultado.Sucess)
             {
-                // Actualizar los TextBox con la matriz resultado
-                ActualizarTextBoxesConResultado(resultado.MatrizResultado, dimension);
+                // Actualizar las TextBox de la última columna con el vector resultante
+                ActualizarTérminosIndependientes(dimension, resultado.VectorResultante);
             }
             else
             {
-                // Mostrar el mensaje de error si la operación falla
-                MessageBox.Show("Error en el cálculo: " + resultado.MensajeError, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error: {resultado.MensajeError}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void ActualizarTextBoxesConResultado(double[,] matrizResultado, int dimension)
+        private void TransformarEnMatrizIdentidad(int dimension)
         {
             for (int row = 0; row < dimension; row++)
             {
-                for (int col = 0; col < dimension + 1; col++)
+                for (int col = 0; col < dimension; col++)
                 {
                     string nombre = $"({row},{col})";
                     TextBox textBox = GroupBoxMatriz.Controls.Find(nombre, true).FirstOrDefault() as TextBox;
-
                     if (textBox != null)
                     {
-                        // Actualizar el valor del TextBox con el valor de la matriz resultado
-                        textBox.Text = matrizResultado[row, col].ToString("F3"); // Formato de dos decimales
+                        if (row == col)
+                        {
+                            // Si estamos en la diagonal, colocar un 1
+                            textBox.Text = "1";
+                            textBox.BackColor = Color.LightGreen; // Cambiar el color de fondo
+                        }
+                        else
+                        {
+                            // Si no estamos en la diagonal, colocar un 0
+                            textBox.Text = "0";
+                        }
                     }
+                }
+            }
+        }
+
+        private void ActualizarTérminosIndependientes(int dimension, double[] vectorResultado)
+        {
+            for (int row = 0; row < dimension; row++)
+            {
+                string nombre = $"({row},{dimension})"; // Última columna (términos independientes)
+                TextBox textBox = GroupBoxMatriz.Controls.Find(nombre, true).FirstOrDefault() as TextBox;
+                if (textBox != null)
+                {
+                    textBox.Text = vectorResultado[row].ToString(); // Reemplazar con el valor resultante
                 }
             }
         }

@@ -9,60 +9,94 @@ namespace AnalisisNumerico.Metodos.Unidad_2
 {
     public class Gauss_Jordan
     {
-        public ResultadoUnidad2 GaussJordan(double[,] matriz)
+        public ResultadoUnidad2 UseMethod(double[,] matriz)
         {
-            ResultadoUnidad2 res = new ResultadoUnidad2();
-            int tamanio = matriz.GetLength(0);
+            int filas = matriz.GetLength(0);
+            int columnas = matriz.GetLength(1);
 
-            for (int i = 0; i < tamanio; i++)
+            // Verificar si la matriz es compatible (n ecuaciones y n+1 columnas)
+            if (filas + 1 != columnas)
             {
-                int elementomayorcolumna = i;
-
-                // Encontrar el mayor elemento en la columna para intercambiar filas
-                for (int k = i + 1; k < tamanio; k++)
+                return new ResultadoUnidad2
                 {
-                    if (Math.Abs(matriz[k, i]) > Math.Abs(matriz[elementomayorcolumna, i]))
+                    Sucess = false,
+                    MensajeError = "La matriz no tiene el tamaño adecuado para un sistema de ecuaciones.",
+                    VectorResultante = null
+                };
+            }
+
+            // Algoritmo de Gauss-Jordan
+            for (int i = 0; i < filas; i++)
+            {
+                // Verificar si el elemento de la diagonal es cero, intercambiar filas si es necesario
+                if (matriz[i, i] == 0)
+                {
+                    bool intercambiada = false;
+                    for (int j = i + 1; j < filas; j++)
                     {
-                        elementomayorcolumna = k;
-                    }
-                }
-
-                // Intercambiar filas si es necesario
-                if (elementomayorcolumna != i)
-                {
-                    for (int j = 0; j < tamanio + 1; j++)  // Incluir términos independientes
-                    {
-                        double aux = matriz[i, j];
-                        matriz[i, j] = matriz[elementomayorcolumna, j];
-                        matriz[elementomayorcolumna, j] = aux;
-                    }
-                }
-
-                // Dividir la fila por el elemento diagonal
-                double elementoDiagonal = matriz[i, i];
-                for (int j = 0; j < tamanio + 1; j++) // Incluir términos independientes
-                {
-                    matriz[i, j] /= elementoDiagonal;
-                }
-
-                // Reducir las demás filas
-                for (int k = 0; k < tamanio; k++)
-                {
-                    if (k != i)
-                    {
-                        double factor = matriz[k, i];
-                        for (int j = 0; j < tamanio + 1; j++) // Incluir términos independientes
+                        if (matriz[j, i] != 0)
                         {
-                            matriz[k, j] -= factor * matriz[i, j];
+                            IntercambiarFilas(matriz, i, j);
+                            intercambiada = true;
+                            break;
+                        }
+                    }
+                    if (!intercambiada)
+                    {
+                        return new ResultadoUnidad2
+                        {
+                            Sucess = false,
+                            MensajeError = "El sistema no tiene solución única.",
+                            VectorResultante = null
+                        };
+                    }
+                }
+
+                // Hacer el pivote igual a 1
+                double pivote = matriz[i, i];
+                for (int j = 0; j < columnas; j++)
+                {
+                    matriz[i, j] /= pivote;
+                }
+
+                // Hacer cero los otros elementos de la columna actual
+                for (int j = 0; j < filas; j++)
+                {
+                    if (j != i)
+                    {
+                        double factor = matriz[j, i];
+                        for (int k = 0; k < columnas; k++)
+                        {
+                            matriz[j, k] -= factor * matriz[i, k];
                         }
                     }
                 }
             }
 
-            res.Sucess = true;
-            res.MatrizResultado = matriz;
-            res.MensajeError = null;
-            return res;
+            // Extraer el vector resultante
+            double[] resultado = new double[filas];
+            for (int i = 0; i < filas; i++)
+            {
+                resultado[i] = matriz[i, columnas - 1];
+            }
+
+            return new ResultadoUnidad2
+            {
+                Sucess = true,
+                MensajeError = null,
+                VectorResultante = resultado
+            };
+        }
+
+        private void IntercambiarFilas(double[,] matriz, int fila1, int fila2)
+        {
+            int columnas = matriz.GetLength(1);
+            for (int i = 0; i < columnas; i++)
+            {
+                double temp = matriz[fila1, i];
+                matriz[fila1, i] = matriz[fila2, i];
+                matriz[fila2, i] = temp;
+            }
         }
     }
 }

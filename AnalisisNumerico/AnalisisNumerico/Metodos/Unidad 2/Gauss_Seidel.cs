@@ -8,54 +8,69 @@ namespace AnalisisNumerico.Metodos.Unidad_2
 {
     public class Gauss_Seidel
     {
-        public ResultadoUnidad2 GaussSeidel(double[,] matrizinicio, double tolerancia, int nroiteraciones)
+        public ResultadoUnidad2 UseMethod(double[,] matriz, double tolerancia, int cantidadIteraciones)
         {
-            ResultadoUnidad2 res = new ResultadoUnidad2();
-            int n = matrizinicio.GetLength(0); // Número de filas (y columnas de A)
-            double[] x = new double[n];
-            double[] xOld = new double[n];
+            int dimension = matriz.GetLength(0);
+            double[] soluciones = new double[dimension];
+            double[] anteriores = new double[dimension];
 
-            for (int i = 0; i < nroiteraciones; i++)
+            // Inicializar el vector de soluciones
+            for (int i = 0; i < dimension; i++)
             {
-                Array.Copy(x, xOld, n);  // Copiar x en xOld
+                soluciones[i] = 0.0; // Puedes inicializar en otro valor si lo deseas
+            }
 
-                for (int k = 0; k < n; k++)
+            int iteracion = 0;
+            bool convergencia = false;
+
+            while (!convergencia && iteracion < cantidadIteraciones)
+            {
+                iteracion++;
+                convergencia = true; // Asumimos que converge en esta iteración
+
+                for (int i = 0; i < dimension; i++)
                 {
-                    double sum = 0;
-                    for (int j = 0; j < n; j++)
+                    double suma = matriz[i, dimension]; // Término independiente
+
+                    for (int j = 0; j < dimension; j++)
                     {
-                        if (j != k)
+                        if (i != j)
                         {
-                            sum += matrizinicio[k, j] * x[j];
+                            suma -= matriz[i, j] * soluciones[j]; // Resto el valor conocido multiplicado por la incógnita
                         }
                     }
-                    x[k] = (matrizinicio[k, n] - sum) / matrizinicio[k, k];
-                }
 
-                // Verificar la convergencia
-                double maxError = 0;
-                for (int j = 0; j < n; j++)
-                {
-                    maxError = Math.Max(maxError, Math.Abs(x[i] - xOld[i]));
-                }
+                    // Calcular nueva solución para x_i
+                    double nuevaSolucion = suma / matriz[i, i];
 
-                if (maxError < tolerancia)
-                {
-                    Console.WriteLine($"Convergencia alcanzada en {i + 1} iteraciones.");
-                    break;
+                    // Verificar el criterio de convergencia
+                    if (Math.Abs(nuevaSolucion - soluciones[i]) > tolerancia)
+                    {
+                        convergencia = false;
+                    }
+
+                    anteriores[i] = soluciones[i];
+                    soluciones[i] = nuevaSolucion; // Actualizar la solución
                 }
             }
 
-            // Convertir la matriz en la matriz identidad y colocar los resultados en la última columna
-            for (int i = 0; i < n; i++)
+            if (iteracion >= cantidadIteraciones)
             {
-                for (int j = 0; j < n; j++)
+                return new ResultadoUnidad2
                 {
-                    matrizinicio[i, j] = (i == j) ? 1.0 : 0.0;
-                }
-                matrizinicio[i, n] = x[i];
+                    Sucess = false,
+                    MensajeError = "El método no convergió después del número máximo de iteraciones.",
+                    VectorResultante = anteriores // Devolver las soluciones aproximadas antes de detenerse
+                };
             }
-            return res;
+
+            return new ResultadoUnidad2
+            {
+                Sucess = true,
+                MensajeError = string.Empty,
+                VectorResultante = soluciones,
+                CantidadIteraciones = iteracion
+            };
         }
     }
 }

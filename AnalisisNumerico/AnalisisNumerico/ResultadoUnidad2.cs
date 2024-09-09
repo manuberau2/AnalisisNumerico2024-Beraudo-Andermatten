@@ -9,7 +9,8 @@ namespace AnalisisNumerico
     public class ResultadoUnidad2
     {
         public bool Sucess { get; set; }
-        public string MensajeError { get; set; }
-        public double[,] MatrizResultado {  get; set; }
+        public string? MensajeError { get; set; }
+        public double[]? VectorResultante { get; set; }
+        public int? CantidadIteraciones { get; set; }
     }
 }

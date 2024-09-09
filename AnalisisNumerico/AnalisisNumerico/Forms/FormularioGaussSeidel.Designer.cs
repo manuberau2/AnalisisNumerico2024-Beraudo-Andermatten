@@ -34,10 +34,11 @@
             TextBoxDimensionMatriz = new TextBox();
             label3 = new Label();
             label2 = new Label();
-            TextboxTolerancia = new TextBox();
+            TextBoxTolerancia = new TextBox();
             label4 = new Label();
             TextBoxIteraciones = new TextBox();
             GroupBoxMatriz = new GroupBox();
+            GroupBoxResultado = new GroupBox();
             SuspendLayout();
             // 
             // label1
@@ -60,6 +61,7 @@
             BtnCalcular.TabIndex = 14;
             BtnCalcular.Text = "Calcular";
             BtnCalcular.UseVisualStyleBackColor = true;
+            BtnCalcular.Click += BtnCalcular_Click;
             // 
             // BtnGenerarMatriz
             // 
@@ -100,12 +102,12 @@
             label2.TabIndex = 15;
             label2.Text = "Tolerancia:";
             // 
-            // TextboxTolerancia
+            // TextBoxTolerancia
             // 
-            TextboxTolerancia.Location = new Point(187, 123);
-            TextboxTolerancia.Name = "TextboxTolerancia";
-            TextboxTolerancia.Size = new Size(103, 31);
-            TextboxTolerancia.TabIndex = 16;
+            TextBoxTolerancia.Location = new Point(187, 123);
+            TextBoxTolerancia.Name = "TextBoxTolerancia";
+            TextBoxTolerancia.Size = new Size(103, 31);
+            TextBoxTolerancia.TabIndex = 16;
             // 
             // label4
             // 
@@ -130,10 +132,20 @@
             GroupBoxMatriz.ForeColor = Color.FromArgb(223, 225, 210);
             GroupBoxMatriz.Location = new Point(30, 174);
             GroupBoxMatriz.Name = "GroupBoxMatriz";
-            GroupBoxMatriz.Size = new Size(933, 356);
+            GroupBoxMatriz.Size = new Size(565, 356);
             GroupBoxMatriz.TabIndex = 19;
             GroupBoxMatriz.TabStop = false;
             GroupBoxMatriz.Text = "Matriz";
+            // 
+            // GroupBoxResultado
+            // 
+            GroupBoxResultado.ForeColor = Color.FromArgb(223, 225, 210);
+            GroupBoxResultado.Location = new Point(602, 174);
+            GroupBoxResultado.Name = "GroupBoxResultado";
+            GroupBoxResultado.Size = new Size(361, 356);
+            GroupBoxResultado.TabIndex = 20;
+            GroupBoxResultado.TabStop = false;
+            GroupBoxResultado.Text = "Resultado";
             // 
             // FormularioGaussSeidel
             // 
@@ -141,10 +153,11 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(32, 30, 45);
             ClientSize = new Size(975, 548);
+            Controls.Add(GroupBoxResultado);
             Controls.Add(GroupBoxMatriz);
             Controls.Add(TextBoxIteraciones);
             Controls.Add(label4);
-            Controls.Add(TextboxTolerancia);
+            Controls.Add(TextBoxTolerancia);
             Controls.Add(label2);
             Controls.Add(BtnCalcular);
             Controls.Add(BtnGenerarMatriz);
@@ -165,9 +178,10 @@
         private TextBox TextBoxDimensionMatriz;
         private Label label3;
         private Label label2;
-        private TextBox TextboxTolerancia;
+        private TextBox TextBoxTolerancia;
         private Label label4;
         private TextBox TextBoxIteraciones;
         private GroupBox GroupBoxMatriz;
+        private GroupBox GroupBoxResultado;
     }
 }
