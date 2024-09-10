@@ -14,6 +14,28 @@ namespace AnalisisNumerico.Metodos.Unidad_2
             double[] soluciones = new double[dimension];
             double[] anteriores = new double[dimension];
 
+            // Verificar si el sistema es diagonalmente dominante
+            for (int i = 0; i < dimension; i++)
+            {
+                double sumaFila = 0.0;
+                for (int j = 0; j < dimension; j++)
+                {
+                    if (i != j)
+                    {
+                        sumaFila += Math.Abs(matriz[i, j]);
+                    }
+                }
+                if (Math.Abs(matriz[i, i]) <= sumaFila)
+                {
+                    return new ResultadoUnidad2
+                    {
+                        Sucess = false,
+                        MensajeError = "El sistema no es diagonalmente dominante.",
+                        VectorResultante = null
+                    };
+                }
+            }
+
             // Inicializar el vector de soluciones
             for (int i = 0; i < dimension; i++)
             {
@@ -38,6 +60,17 @@ namespace AnalisisNumerico.Metodos.Unidad_2
                         {
                             suma -= matriz[i, j] * soluciones[j]; // Resto el valor conocido multiplicado por la incógnita
                         }
+                    }
+
+                    // Verificar división por cero
+                    if (matriz[i, i] == 0)
+                    {
+                        return new ResultadoUnidad2
+                        {
+                            Sucess = false,
+                            MensajeError = "División por cero en la matriz.",
+                            VectorResultante = null
+                        };
                     }
 
                     // Calcular nueva solución para x_i
