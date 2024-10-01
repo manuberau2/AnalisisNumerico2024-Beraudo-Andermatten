@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Analisis_Numerico;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,20 @@ namespace AnalisisNumerico.Forms
 {
     public partial class FormularioRegresionLineal : Form
     {
+        public Graficador Graficador { get; set; }
+
         public FormularioRegresionLineal()
         {
             InitializeComponent();
+            SetPanelGrafica();
+        }
+
+        private void SetPanelGrafica()
+        {
+            PanelGraficador.Controls.Clear();
+            this.Graficador = new Graficador();
+            PanelGraficador.Controls.Add(Graficador);
+            Graficador.Dock = DockStyle.Fill;
         }
 
         public List<double[]> PuntosCargados { get; set; } = new List<double[]>();

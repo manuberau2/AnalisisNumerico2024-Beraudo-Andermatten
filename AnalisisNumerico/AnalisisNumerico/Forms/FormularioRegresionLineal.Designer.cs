@@ -49,6 +49,7 @@
             label9 = new Label();
             label8 = new Label();
             label7 = new Label();
+            PanelGraficador = new Panel();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -199,6 +200,7 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(PanelGraficador);
             groupBox2.Controls.Add(TextBoxAjuste);
             groupBox2.Controls.Add(TextBoxCorrelacion);
             groupBox2.Controls.Add(TextBoxFuncionObtenida);
@@ -267,6 +269,14 @@
             label7.TabIndex = 1;
             label7.Text = "Función obtenida:";
             // 
+            // PanelGraficador
+            // 
+            PanelGraficador.BackColor = Color.Silver;
+            PanelGraficador.Location = new Point(19, 178);
+            PanelGraficador.Name = "PanelGraficador";
+            PanelGraficador.Size = new Size(439, 336);
+            PanelGraficador.TabIndex = 7;
+            // 
             // FormularioRegresionLineal
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
@@ -307,5 +317,6 @@
         private TextBox TextBoxAjuste;
         private TextBox TextBoxCorrelacion;
         private TextBox TextBoxFuncionObtenida;
+        private Panel PanelGraficador;
     }
 }
