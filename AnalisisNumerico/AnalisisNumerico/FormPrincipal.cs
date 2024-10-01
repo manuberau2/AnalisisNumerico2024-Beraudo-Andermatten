@@ -104,6 +104,27 @@ namespace AnalisisNumerico
 
         #endregion BotonesUnidad2
 
+        #region BotonesUnidad3
+
+        private void BtnUnidad3_Click(object sender, EventArgs e)
+        {
+            MostrarSubMenu(PanelUnidad3);
+        }
+
+        private void BtnRegresionLineal_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormularioRegresionLineal());
+            OcultarSubMenu();
+        }
+
+        private void BtnRegresionPolinomial_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormularioRegresionPolinomial());
+            OcultarSubMenu();
+        }
+
+        #endregion BotonesUnidad3
+
         private Form formularioActivo = null;
 
         private void AbrirFormularioHijo(Form formularioHijo)

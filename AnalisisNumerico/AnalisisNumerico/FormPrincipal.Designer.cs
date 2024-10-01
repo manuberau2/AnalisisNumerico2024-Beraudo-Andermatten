@@ -39,10 +39,8 @@
             button19 = new Button();
             BtnUnidad4 = new Button();
             PanelUnidad3 = new Panel();
-            button11 = new Button();
-            button12 = new Button();
-            button13 = new Button();
-            button14 = new Button();
+            BtnRegresionPolinomial = new Button();
+            BtnRegresionLineal = new Button();
             BtnUnidad3 = new Button();
             PanelUnidad2 = new Panel();
             BtnGaussSeidel = new Button();
@@ -98,7 +96,7 @@
             PanelUnidad4.Controls.Add(button18);
             PanelUnidad4.Controls.Add(button19);
             PanelUnidad4.Dock = DockStyle.Top;
-            PanelUnidad4.Location = new Point(0, 688);
+            PanelUnidad4.Location = new Point(0, 617);
             PanelUnidad4.Name = "PanelUnidad4";
             PanelUnidad4.Size = new Size(224, 243);
             PanelUnidad4.TabIndex = 7;
@@ -200,7 +198,7 @@
             BtnUnidad4.FlatAppearance.BorderSize = 0;
             BtnUnidad4.FlatStyle = FlatStyle.Flat;
             BtnUnidad4.ForeColor = Color.Gainsboro;
-            BtnUnidad4.Location = new Point(0, 643);
+            BtnUnidad4.Location = new Point(0, 572);
             BtnUnidad4.Name = "BtnUnidad4";
             BtnUnidad4.Padding = new Padding(10, 0, 0, 0);
             BtnUnidad4.Size = new Size(224, 45);
@@ -212,76 +210,48 @@
             // PanelUnidad3
             // 
             PanelUnidad3.BackColor = Color.FromArgb(35, 32, 39);
-            PanelUnidad3.Controls.Add(button11);
-            PanelUnidad3.Controls.Add(button12);
-            PanelUnidad3.Controls.Add(button13);
-            PanelUnidad3.Controls.Add(button14);
+            PanelUnidad3.Controls.Add(BtnRegresionPolinomial);
+            PanelUnidad3.Controls.Add(BtnRegresionLineal);
             PanelUnidad3.Dock = DockStyle.Top;
             PanelUnidad3.Location = new Point(0, 486);
             PanelUnidad3.Name = "PanelUnidad3";
-            PanelUnidad3.Size = new Size(224, 157);
+            PanelUnidad3.Size = new Size(224, 86);
             PanelUnidad3.TabIndex = 5;
             PanelUnidad3.Visible = false;
             // 
-            // button11
+            // BtnRegresionPolinomial
             // 
-            button11.Dock = DockStyle.Top;
-            button11.FlatAppearance.BorderSize = 0;
-            button11.FlatStyle = FlatStyle.Flat;
-            button11.ForeColor = Color.LightGray;
-            button11.Location = new Point(0, 114);
-            button11.Name = "button11";
-            button11.Padding = new Padding(35, 0, 0, 0);
-            button11.Size = new Size(224, 38);
-            button11.TabIndex = 3;
-            button11.Text = "button11";
-            button11.TextAlign = ContentAlignment.MiddleLeft;
-            button11.UseVisualStyleBackColor = true;
+            BtnRegresionPolinomial.Dock = DockStyle.Top;
+            BtnRegresionPolinomial.FlatAppearance.BorderSize = 0;
+            BtnRegresionPolinomial.FlatStyle = FlatStyle.Flat;
+            BtnRegresionPolinomial.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            BtnRegresionPolinomial.ForeColor = Color.LightGray;
+            BtnRegresionPolinomial.Location = new Point(0, 38);
+            BtnRegresionPolinomial.Name = "BtnRegresionPolinomial";
+            BtnRegresionPolinomial.Padding = new Padding(35, 0, 0, 0);
+            BtnRegresionPolinomial.Size = new Size(224, 38);
+            BtnRegresionPolinomial.TabIndex = 1;
+            BtnRegresionPolinomial.Text = "Regresión polinomial";
+            BtnRegresionPolinomial.TextAlign = ContentAlignment.MiddleLeft;
+            BtnRegresionPolinomial.UseVisualStyleBackColor = true;
+            BtnRegresionPolinomial.Click += BtnRegresionPolinomial_Click;
             // 
-            // button12
+            // BtnRegresionLineal
             // 
-            button12.Dock = DockStyle.Top;
-            button12.FlatAppearance.BorderSize = 0;
-            button12.FlatStyle = FlatStyle.Flat;
-            button12.ForeColor = Color.LightGray;
-            button12.Location = new Point(0, 76);
-            button12.Name = "button12";
-            button12.Padding = new Padding(35, 0, 0, 0);
-            button12.Size = new Size(224, 38);
-            button12.TabIndex = 2;
-            button12.Text = "button12";
-            button12.TextAlign = ContentAlignment.MiddleLeft;
-            button12.UseVisualStyleBackColor = true;
-            // 
-            // button13
-            // 
-            button13.Dock = DockStyle.Top;
-            button13.FlatAppearance.BorderSize = 0;
-            button13.FlatStyle = FlatStyle.Flat;
-            button13.ForeColor = Color.LightGray;
-            button13.Location = new Point(0, 38);
-            button13.Name = "button13";
-            button13.Padding = new Padding(35, 0, 0, 0);
-            button13.Size = new Size(224, 38);
-            button13.TabIndex = 1;
-            button13.Text = "button13";
-            button13.TextAlign = ContentAlignment.MiddleLeft;
-            button13.UseVisualStyleBackColor = true;
-            // 
-            // button14
-            // 
-            button14.Dock = DockStyle.Top;
-            button14.FlatAppearance.BorderSize = 0;
-            button14.FlatStyle = FlatStyle.Flat;
-            button14.ForeColor = Color.LightGray;
-            button14.Location = new Point(0, 0);
-            button14.Name = "button14";
-            button14.Padding = new Padding(35, 0, 0, 0);
-            button14.Size = new Size(224, 38);
-            button14.TabIndex = 0;
-            button14.Text = "button14";
-            button14.TextAlign = ContentAlignment.MiddleLeft;
-            button14.UseVisualStyleBackColor = true;
+            BtnRegresionLineal.Dock = DockStyle.Top;
+            BtnRegresionLineal.FlatAppearance.BorderSize = 0;
+            BtnRegresionLineal.FlatStyle = FlatStyle.Flat;
+            BtnRegresionLineal.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            BtnRegresionLineal.ForeColor = Color.LightGray;
+            BtnRegresionLineal.Location = new Point(0, 0);
+            BtnRegresionLineal.Name = "BtnRegresionLineal";
+            BtnRegresionLineal.Padding = new Padding(35, 0, 0, 0);
+            BtnRegresionLineal.Size = new Size(224, 38);
+            BtnRegresionLineal.TabIndex = 0;
+            BtnRegresionLineal.Text = "Regresión lineal";
+            BtnRegresionLineal.TextAlign = ContentAlignment.MiddleLeft;
+            BtnRegresionLineal.UseVisualStyleBackColor = true;
+            BtnRegresionLineal.Click += BtnRegresionLineal_Click;
             // 
             // BtnUnidad3
             // 
@@ -297,6 +267,7 @@
             BtnUnidad3.Text = "Unidad 3";
             BtnUnidad3.TextAlign = ContentAlignment.MiddleLeft;
             BtnUnidad3.UseVisualStyleBackColor = true;
+            BtnUnidad3.Click += BtnUnidad3_Click;
             // 
             // PanelUnidad2
             // 
@@ -541,10 +512,8 @@
         private Button button19;
         private Button BtnUnidad4;
         private Panel PanelUnidad3;
-        private Button button11;
-        private Button button12;
-        private Button button13;
-        private Button button14;
+        private Button BtnRegresionPolinomial;
+        private Button BtnRegresionLineal;
         private PictureBox pictureBox1;
         private Panel PanelFormularioHijo;
         private PictureBox pictureBox2;
