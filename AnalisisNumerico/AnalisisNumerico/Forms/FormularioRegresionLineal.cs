@@ -1,4 +1,5 @@
 ﻿using Analisis_Numerico;
+using AnalisisNumerico.Metodos.Unidad_3;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -64,6 +65,20 @@ namespace AnalisisNumerico.Forms
             PanelPuntosIngresados.Show();
             TextBoxPuntoX.Clear();
             TextBoxPuntoY.Clear();
+        }
+        
+      private void BtnCalcularRegresionLineal_Click(object sender, EventArgs e)
+        {
+            if (PuntosCargados.Count < 2)
+            {
+                MessageBox.Show("Debe ingresar al menos dos puntos para calcular la regresión lineal.");
+                return;
+            }
+            double tolerancia = 0;
+            var (funcion, r, efectividad) = RegresionLineal.CalcularRegresionLineal(PuntosCargados, tolerancia);
+            MessageBox.Show($"Función: {funcion}\nCoeficiente de correlación: {r}%\nEfectividad del ajuste: {efectividad}"); //hay q ligar los resultadosa cada cuadro
+            
+
         }
     }
 }

@@ -43,13 +43,13 @@
             TextBoxPuntoX = new TextBox();
             label1 = new Label();
             groupBox2 = new GroupBox();
+            PanelGraficador = new Panel();
             TextBoxAjuste = new TextBox();
             TextBoxCorrelacion = new TextBox();
             TextBoxFuncionObtenida = new TextBox();
             label9 = new Label();
             label8 = new Label();
             label7 = new Label();
-            PanelGraficador = new Panel();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             SuspendLayout();
@@ -70,9 +70,11 @@
             groupBox1.Controls.Add(TextBoxPuntoX);
             groupBox1.Controls.Add(label1);
             groupBox1.ForeColor = Color.FromArgb(223, 225, 210);
-            groupBox1.Location = new Point(23, 12);
+            groupBox1.Location = new Point(18, 10);
+            groupBox1.Margin = new Padding(2, 2, 2, 2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(467, 524);
+            groupBox1.Padding = new Padding(2, 2, 2, 2);
+            groupBox1.Size = new Size(374, 419);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Entrada";
@@ -80,19 +82,22 @@
             // BtnCalcular
             // 
             BtnCalcular.ForeColor = Color.Black;
-            BtnCalcular.Location = new Point(268, 467);
+            BtnCalcular.Location = new Point(214, 374);
+            BtnCalcular.Margin = new Padding(2, 2, 2, 2);
             BtnCalcular.Name = "BtnCalcular";
-            BtnCalcular.Size = new Size(177, 38);
+            BtnCalcular.Size = new Size(142, 30);
             BtnCalcular.TabIndex = 14;
             BtnCalcular.Text = "Calcular";
             BtnCalcular.UseVisualStyleBackColor = true;
+            BtnCalcular.Click += BtnCalcularRegresionLineal_Click;
             // 
             // BtnBorrarTodos
             // 
             BtnBorrarTodos.ForeColor = Color.Black;
-            BtnBorrarTodos.Location = new Point(268, 372);
+            BtnBorrarTodos.Location = new Point(214, 298);
+            BtnBorrarTodos.Margin = new Padding(2, 2, 2, 2);
             BtnBorrarTodos.Name = "BtnBorrarTodos";
-            BtnBorrarTodos.Size = new Size(177, 38);
+            BtnBorrarTodos.Size = new Size(142, 30);
             BtnBorrarTodos.TabIndex = 13;
             BtnBorrarTodos.Text = "Borrar todos";
             BtnBorrarTodos.UseVisualStyleBackColor = true;
@@ -100,9 +105,10 @@
             // BtnBorrarUltimo
             // 
             BtnBorrarUltimo.ForeColor = Color.Black;
-            BtnBorrarUltimo.Location = new Point(268, 318);
+            BtnBorrarUltimo.Location = new Point(214, 254);
+            BtnBorrarUltimo.Margin = new Padding(2, 2, 2, 2);
             BtnBorrarUltimo.Name = "BtnBorrarUltimo";
-            BtnBorrarUltimo.Size = new Size(177, 38);
+            BtnBorrarUltimo.Size = new Size(142, 30);
             BtnBorrarUltimo.TabIndex = 12;
             BtnBorrarUltimo.Text = "Borrar último";
             BtnBorrarUltimo.UseVisualStyleBackColor = true;
@@ -110,9 +116,10 @@
             // BtnCargarPunto
             // 
             BtnCargarPunto.ForeColor = Color.Black;
-            BtnCargarPunto.Location = new Point(268, 201);
+            BtnCargarPunto.Location = new Point(214, 161);
+            BtnCargarPunto.Margin = new Padding(2, 2, 2, 2);
             BtnCargarPunto.Name = "BtnCargarPunto";
-            BtnCargarPunto.Size = new Size(177, 38);
+            BtnCargarPunto.Size = new Size(142, 30);
             BtnCargarPunto.TabIndex = 11;
             BtnCargarPunto.Text = "Cargar punto";
             BtnCargarPunto.UseVisualStyleBackColor = true;
@@ -122,9 +129,10 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(25, 168);
+            label6.Location = new Point(20, 134);
+            label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
-            label6.Size = new Size(206, 30);
+            label6.Size = new Size(178, 25);
             label6.TabIndex = 10;
             label6.Text = "Puntos ingresados: ";
             // 
@@ -132,25 +140,28 @@
             // 
             PanelPuntosIngresados.AutoScroll = true;
             PanelPuntosIngresados.BackColor = Color.Silver;
-            PanelPuntosIngresados.Location = new Point(25, 201);
+            PanelPuntosIngresados.Location = new Point(20, 161);
+            PanelPuntosIngresados.Margin = new Padding(2, 2, 2, 2);
             PanelPuntosIngresados.Name = "PanelPuntosIngresados";
-            PanelPuntosIngresados.Size = new Size(219, 317);
+            PanelPuntosIngresados.Size = new Size(175, 254);
             PanelPuntosIngresados.TabIndex = 9;
             // 
             // TextBoxTolerancia
             // 
-            TextBoxTolerancia.Location = new Point(259, 115);
+            TextBoxTolerancia.Location = new Point(207, 92);
+            TextBoxTolerancia.Margin = new Padding(2, 2, 2, 2);
             TextBoxTolerancia.Name = "TextBoxTolerancia";
-            TextBoxTolerancia.Size = new Size(145, 31);
+            TextBoxTolerancia.Size = new Size(117, 27);
             TextBoxTolerancia.TabIndex = 6;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            label4.Location = new Point(25, 114);
+            label4.Location = new Point(20, 91);
+            label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
-            label4.Size = new Size(202, 30);
+            label4.Size = new Size(177, 25);
             label4.TabIndex = 5;
             label4.Text = "Ingresar tolerancia:";
             // 
@@ -158,9 +169,10 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            label3.Location = new Point(378, 19);
+            label3.Location = new Point(302, 15);
+            label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
-            label3.Size = new Size(26, 30);
+            label3.Size = new Size(23, 25);
             label3.TabIndex = 4;
             label3.Text = "Y";
             // 
@@ -168,33 +180,37 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            label2.Location = new Point(259, 19);
+            label2.Location = new Point(207, 15);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
-            label2.Size = new Size(27, 30);
+            label2.Size = new Size(24, 25);
             label2.TabIndex = 3;
             label2.Text = "X";
             // 
             // TextBoxPuntoY
             // 
-            TextBoxPuntoY.Location = new Point(352, 52);
+            TextBoxPuntoY.Location = new Point(282, 42);
+            TextBoxPuntoY.Margin = new Padding(2, 2, 2, 2);
             TextBoxPuntoY.Name = "TextBoxPuntoY";
-            TextBoxPuntoY.Size = new Size(72, 31);
+            TextBoxPuntoY.Size = new Size(58, 27);
             TextBoxPuntoY.TabIndex = 2;
             // 
             // TextBoxPuntoX
             // 
-            TextBoxPuntoX.Location = new Point(239, 52);
+            TextBoxPuntoX.Location = new Point(191, 42);
+            TextBoxPuntoX.Margin = new Padding(2, 2, 2, 2);
             TextBoxPuntoX.Name = "TextBoxPuntoX";
-            TextBoxPuntoX.Size = new Size(72, 31);
+            TextBoxPuntoX.Size = new Size(58, 27);
             TextBoxPuntoX.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(25, 51);
+            label1.Location = new Point(20, 41);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
-            label1.Size = new Size(164, 30);
+            label1.Size = new Size(143, 25);
             label1.TabIndex = 0;
             label1.Text = "Ingresar punto:";
             // 
@@ -208,44 +224,59 @@
             groupBox2.Controls.Add(label8);
             groupBox2.Controls.Add(label7);
             groupBox2.ForeColor = Color.FromArgb(223, 225, 210);
-            groupBox2.Location = new Point(496, 12);
+            groupBox2.Location = new Point(397, 10);
+            groupBox2.Margin = new Padding(2, 2, 2, 2);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(467, 524);
+            groupBox2.Padding = new Padding(2, 2, 2, 2);
+            groupBox2.Size = new Size(374, 419);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "Salida";
             // 
+            // PanelGraficador
+            // 
+            PanelGraficador.BackColor = Color.Silver;
+            PanelGraficador.Location = new Point(15, 142);
+            PanelGraficador.Margin = new Padding(2, 2, 2, 2);
+            PanelGraficador.Name = "PanelGraficador";
+            PanelGraficador.Size = new Size(351, 269);
+            PanelGraficador.TabIndex = 7;
+            // 
             // TextBoxAjuste
             // 
-            TextBoxAjuste.Location = new Point(264, 127);
+            TextBoxAjuste.Location = new Point(211, 102);
+            TextBoxAjuste.Margin = new Padding(2, 2, 2, 2);
             TextBoxAjuste.Name = "TextBoxAjuste";
             TextBoxAjuste.ReadOnly = true;
-            TextBoxAjuste.Size = new Size(173, 31);
+            TextBoxAjuste.Size = new Size(139, 27);
             TextBoxAjuste.TabIndex = 6;
             // 
             // TextBoxCorrelacion
             // 
-            TextBoxCorrelacion.Location = new Point(264, 85);
+            TextBoxCorrelacion.Location = new Point(211, 68);
+            TextBoxCorrelacion.Margin = new Padding(2, 2, 2, 2);
             TextBoxCorrelacion.Name = "TextBoxCorrelacion";
             TextBoxCorrelacion.ReadOnly = true;
-            TextBoxCorrelacion.Size = new Size(173, 31);
+            TextBoxCorrelacion.Size = new Size(139, 27);
             TextBoxCorrelacion.TabIndex = 5;
             // 
             // TextBoxFuncionObtenida
             // 
-            TextBoxFuncionObtenida.Location = new Point(264, 43);
+            TextBoxFuncionObtenida.Location = new Point(211, 34);
+            TextBoxFuncionObtenida.Margin = new Padding(2, 2, 2, 2);
             TextBoxFuncionObtenida.Name = "TextBoxFuncionObtenida";
             TextBoxFuncionObtenida.ReadOnly = true;
-            TextBoxFuncionObtenida.Size = new Size(173, 31);
+            TextBoxFuncionObtenida.Size = new Size(139, 27);
             TextBoxFuncionObtenida.TabIndex = 4;
             // 
             // label9
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            label9.Location = new Point(18, 126);
+            label9.Location = new Point(14, 101);
+            label9.Margin = new Padding(2, 0, 2, 0);
             label9.Name = "label9";
-            label9.Size = new Size(229, 30);
+            label9.Size = new Size(199, 25);
             label9.TabIndex = 3;
             label9.Text = "Efectividad del ajuste:";
             // 
@@ -253,9 +284,10 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            label8.Location = new Point(18, 86);
+            label8.Location = new Point(14, 69);
+            label8.Margin = new Padding(2, 0, 2, 0);
             label8.Name = "label8";
-            label8.Size = new Size(160, 30);
+            label8.Size = new Size(139, 25);
             label8.TabIndex = 2;
             label8.Text = "Correlación (r):";
             // 
@@ -263,28 +295,22 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold, GraphicsUnit.Point);
-            label7.Location = new Point(18, 42);
+            label7.Location = new Point(14, 34);
+            label7.Margin = new Padding(2, 0, 2, 0);
             label7.Name = "label7";
-            label7.Size = new Size(192, 30);
+            label7.Size = new Size(166, 25);
             label7.TabIndex = 1;
             label7.Text = "Función obtenida:";
             // 
-            // PanelGraficador
-            // 
-            PanelGraficador.BackColor = Color.Silver;
-            PanelGraficador.Location = new Point(19, 178);
-            PanelGraficador.Name = "PanelGraficador";
-            PanelGraficador.Size = new Size(439, 336);
-            PanelGraficador.TabIndex = 7;
-            // 
             // FormularioRegresionLineal
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(32, 30, 45);
-            ClientSize = new Size(975, 548);
+            ClientSize = new Size(780, 438);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            Margin = new Padding(2, 2, 2, 2);
             Name = "FormularioRegresionLineal";
             Text = "FormularioRegresionLineal";
             groupBox1.ResumeLayout(false);
