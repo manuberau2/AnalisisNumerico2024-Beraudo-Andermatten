@@ -53,7 +53,7 @@ namespace AnalisisNumerico.Forms
 
             CargarPunto(double.Parse(TextBoxPuntoX.Text), double.Parse(TextBoxPuntoY.Text));
             Label puntoIngresado = new Label();
-            puntoIngresado.Text = $"({TextBoxPuntoX.Text}, {TextBoxPuntoY.Text})";
+            puntoIngresado.Text = $"({TextBoxPuntoX.Text}; {TextBoxPuntoY.Text})";
             int cantElementos = PuntosCargados.Count;
             int puntoY = (cantElementos - 1) * 30;
             puntoIngresado.Location = new Point(0, puntoY);
@@ -66,8 +66,8 @@ namespace AnalisisNumerico.Forms
             TextBoxPuntoX.Clear();
             TextBoxPuntoY.Clear();
         }
-        
-      private void BtnCalcularRegresionLineal_Click(object sender, EventArgs e)
+
+        private void BtnCalcularRegresionLineal_Click(object sender, EventArgs e)
         {
             if (PuntosCargados.Count < 2)
             {
@@ -76,9 +76,33 @@ namespace AnalisisNumerico.Forms
             }
             double tolerancia = 0;
             var (funcion, r, efectividad) = RegresionLineal.CalcularRegresionLineal(PuntosCargados, tolerancia);
-            MessageBox.Show($"Función: {funcion}\nCoeficiente de correlación: {r}%\nEfectividad del ajuste: {efectividad}"); //hay q ligar los resultadosa cada cuadro
-            
+            SetPanelGrafica();
+            Graficador.Graficar(PuntosCargados, funcion);
+            TextBoxFuncionObtenida.Text = funcion;
+            TextBoxCorrelacion.Text = r.ToString();
+            TextBoxAjuste.Text = efectividad;
+            return;
+        }
 
+        private void BtnBorrarUltimo_Click(object sender, EventArgs e)
+        {
+            if (PuntosCargados.Count == 0)
+            {
+                MessageBox.Show("No hay puntos para borrar.");
+                return;
+            }
+            PuntosCargados.RemoveAt(PuntosCargados.Count - 1);
+            PanelPuntosIngresados.Controls.RemoveAt(PanelPuntosIngresados.Controls.Count - 1);
+            PanelPuntosIngresados.Show();
+            return;
+        }
+
+        private void BtnBorrarTodos_Click(object sender, EventArgs e)
+        {
+            PuntosCargados.RemoveAll(punto => true);
+            PanelPuntosIngresados.Controls.Clear();
+            PanelPuntosIngresados.Show();
+            return;
         }
     }
 }
