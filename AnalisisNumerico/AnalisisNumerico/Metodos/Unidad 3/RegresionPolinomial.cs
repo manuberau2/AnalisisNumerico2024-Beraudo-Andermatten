@@ -1,126 +1,110 @@
 ﻿using AnalisisNumerico.Metodos.Unidad_2;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace AnalisisNumerico.Metodos.Unidad_3
 {
     public class RegresionPolinomial
     {
-        public static double[,] GenerarMatrizPolinomial(int grado, List<double[]> puntosCargados, double tolerancia)
+        public static (double[,], string, double) GenerarMatrizPolinomial(int grado, List<double[]> puntosCargados, double tolerancia)
         {
             int dimension = grado + 1;
             double[,] matriz = new double[dimension, dimension + 1];
+            double x = 0, y = 0;
 
             foreach (var punto in puntosCargados)
             {
-                double x = punto[0];
-                double y = punto[1];
+                x = punto[0];
+                y = punto[1];
 
                 for (int fila = 0; fila < dimension; fila++)
                 {
                     for (int col = 0; col < dimension; col++)
                     {
-                        double valor = Math.Pow(x, fila + col);
+                        matriz[fila, col] = Math.Pow(x, fila + col);
 
-                        if (Math.Abs(valor) < tolerancia)
+                        if (Math.Abs(matriz[fila, col]) < tolerancia)
                         {
-                            valor = 0; // Aplicamos la tolerancia para valores muy pequeños
+                            matriz[fila, col] = 0;
                         }
 
-                        matriz[fila, col] += valor;
+                        matriz[fila, col] += matriz[fila, col];
                     }
 
                     double terminoIndependiente = y * Math.Pow(x, fila);
 
                     if (Math.Abs(terminoIndependiente) < tolerancia)
                     {
-                        terminoIndependiente = 0; // Aplicamos la tolerancia para el término independiente
+                        terminoIndependiente = 0;
                     }
 
                     matriz[fila, dimension] += terminoIndependiente;
                 }
             }
+            Gauss_Jordan g = new Gauss_Jordan();
+            ResultadoUnidad2 ResultadoGJ = g.UseMethod(matriz);
 
-            return matriz;
-        }
-        public static double[] ResolverPolinomio(int grado, List<double[]> puntosCargados, double tolerancia)
-        {
-            // Generamos la matriz polinomial
-            double[,] matrizPolinomial = GenerarMatrizPolinomial(grado, puntosCargados, tolerancia);
-
-            // Creamos una instancia de Gauss_Jordan y resolvemos el sistema
-            Gauss_Jordan gaussJordan = new Gauss_Jordan();
-            ResultadoUnidad2 resultado = gaussJordan.UseMethod(matrizPolinomial);
-
-            // Verificamos si la resolución fue exitosa
-            if (!resultado.Sucess)
+            // 4. Construimos la función polinómica como un string
+            string funcion = string.Empty;
+            for (int i = 0; i < ResultadoGJ.VectorResultante.Count(); i++)
             {
-                throw new InvalidOperationException(resultado.MensajeError);
+                double ai = Math.Round(ResultadoGJ.VectorResultante[i], 4); // Redondeamos los coeficientes a 4 decimales
+                string termino = (i == 0) ? $"{ai}" : (ai != 0 ? $"{(ai > 0 ? "+" : "")}{ai}x^{i}" : "");
+                funcion = termino + funcion; // Construimos la función, con el coeficiente correspondiente a x^i
             }
 
-            // Devolvemos el vector resultante de coeficientes
-            return resultado.VectorResultante;
-        }
-        public string ConstruirFuncionPolinomica(double[] resultado)
-        {
-            string funcion = "y = ";
-            int grado = resultado.Length - 1;
+            // 5. Calcular el coeficiente de correlación r
+            double SumY = 0;
+            double sr = 0; // Error cuadrático residual (sum of residual squares)
+            double st = 0; // Error cuadrático total (sum of total squares)
 
-            for (int i = 0; i <= grado; i++)
-            {
-                if (i > 0 && resultado[i] >= 0)
-                {
-                    funcion += " + ";
-                }
-                else if (i > 0 && resultado[i] < 0)
-                {
-                    funcion += " - ";
-                    resultado[i] = Math.Abs(resultado[i]);
-                }
-
-                funcion += $"{resultado[i]}";
-                if (grado - i > 0)
-                {
-                    funcion += $" x^{grado - i}";
-                }
-            }
-            return funcion;
-        }
-        public double CalcularCoeficienteCorrelacion(List<double[]> puntosCargados, double[] resultado)
-        {
-            double sr = 0, st = 0;
-            double promedioY = puntosCargados.Average(punto => punto[1]);
-
+            // Calculamos la sumatoria de Y
             foreach (var punto in puntosCargados)
             {
-                double yObservado = punto[1];
-                double x = punto[0];
-                double yPredicho = 0;
-
-                for (int i = 0; i < resultado.Length; i++)
-                {
-                    yPredicho += resultado[i] * Math.Pow(x, resultado.Length - 1 - i);
-                }
-
-                sr += Math.Pow(yObservado - yPredicho, 2);
-                st += Math.Pow(yObservado - promedioY, 2);
+                SumY += punto[1]; // Sumar todas las Y
             }
 
-            return Math.Sqrt((st - sr) / st);
-        }
-        public string EvaluarEfectividadDelAjuste(double coeficienteCorrelacion)
-        {
-            if (coeficienteCorrelacion > 0.9)
-                return "El ajuste es excelente";
-            else if (coeficienteCorrelacion > 0.8)
-                return "El ajuste es aceptable";
-            else
-                return "El ajuste es insuficiente";
-        }
+            // Promedio de Y
+            double promedioY = SumY / puntosCargados.Count;
 
+            // Recorremos los puntos para calcular sr y st
+            foreach (var punto in puntosCargados)
+            {
+                x = punto[0];
+                y = punto[1];
 
+                // Calculamos el valor predicho usando el polinomio
+                double yPredicho = 0;
+                for (int i = 0; i < ResultadoGJ.VectorResultante.Count(); i++)
+                {
+                    yPredicho += ResultadoGJ.VectorResultante[i] * Math.Pow(x, i); // y = a0 + a1*x + a2*x^2 + ...
+                }
+
+                // Error cuadrático residual (diferencia entre valor predicho y real)
+                sr += Math.Pow((yPredicho - y), 2);
+
+                // Error cuadrático total (diferencia entre promedio de Y y valor real)
+                st += Math.Pow((promedioY - y), 2);
+            }
+
+            // Calculamos el coeficiente de correlación r
+            double r = Math.Sqrt((st - sr) / st) * 100;
+
+            // Retornamos la matriz, la función polinómica y el coeficiente de correlación
+            return (matriz, funcion, r);
+        }
     }
 }
+
+
+
+
+
+
+
+
