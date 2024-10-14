@@ -11,100 +11,81 @@ namespace AnalisisNumerico.Metodos.Unidad_3
 {
     public class RegresionPolinomial
     {
-        public static (double[,], string, double) GenerarMatrizPolinomial(int grado, List<double[]> puntosCargados, double tolerancia)
+        private static double[,] GenerarMatrizPolinomial(List<double[]> PuntosCargados, int grado)
         {
-            int dimension = grado + 1;
-            double[,] matriz = new double[dimension, dimension + 1];
-            double x = 0, y = 0;
+            int n = PuntosCargados.Count;
+            double[,] matriz = new double[grado + 1, grado + 2];
 
-            foreach (var punto in puntosCargados)
+            // Llenar la matriz con las sumatorias necesarias
+            for (int i = 0; i <= grado; i++)
             {
-                x = punto[0];
-                y = punto[1];
-
-                for (int fila = 0; fila < dimension; fila++)
+                for (int j = 0; j <= grado; j++)
                 {
-                    for (int col = 0; col < dimension; col++)
-                    {
-                        matriz[fila, col] = Math.Pow(x, fila + col);
-
-                        if (Math.Abs(matriz[fila, col]) < tolerancia)
-                        {
-                            matriz[fila, col] = 0;
-                        }
-
-                        matriz[fila, col] += matriz[fila, col];
-                    }
-
-                    double terminoIndependiente = y * Math.Pow(x, fila);
-
-                    if (Math.Abs(terminoIndependiente) < tolerancia)
-                    {
-                        terminoIndependiente = 0;
-                    }
-
-                    matriz[fila, dimension] += terminoIndependiente;
+                    matriz[i, j] = PuntosCargados.Sum(p => Math.Pow(p[0], i + j));
                 }
-            }
-            Gauss_Jordan g = new Gauss_Jordan();
-            ResultadoUnidad2 ResultadoGJ = g.UseMethod(matriz);
-
-            // 4. Construimos la función polinómica como un string
-            string funcion = string.Empty;
-            for (int i = 0; i < ResultadoGJ.VectorResultante.Count(); i++)
-            {
-                double ai = Math.Round(ResultadoGJ.VectorResultante[i], 4); // Redondeamos los coeficientes a 4 decimales
-                string termino = (i == 0) ? $"{ai}" : (ai != 0 ? $"{(ai > 0 ? "+" : "")}{ai}x^{i}" : "");
-                funcion = termino + funcion; // Construimos la función, con el coeficiente correspondiente a x^i
+                matriz[i, grado + 1] = PuntosCargados.Sum(p => p[1] * Math.Pow(p[0], i));
             }
 
-            // 5. Calcular el coeficiente de correlación r
-            double SumY = 0;
-            double sr = 0; // Error cuadrático residual (sum of residual squares)
-            double st = 0; // Error cuadrático total (sum of total squares)
+            return matriz;
+        }
 
-            // Calculamos la sumatoria de Y
-            foreach (var punto in puntosCargados)
+        public static (string function, double r, string efectividad) CalcularRegresionPolinomial(List<double[]> PuntosCargados, int grado, double tolerancia)
+        {
+            int n = PuntosCargados.Count;
+
+            // Crear la matriz polinomial
+            double[,] matrizPolinomial = GenerarMatrizPolinomial(PuntosCargados, grado);
+
+            // Llamar al método de Gauss-Jordan para obtener los coeficientes
+            Gauss_Jordan gaussJordan = new Gauss_Jordan();
+            ResultadoUnidad2 resultado = gaussJordan.UseMethod(matrizPolinomial);
+
+            if (!resultado.Sucess)
             {
-                SumY += punto[1]; // Sumar todas las Y
+                throw new Exception(resultado.MensajeError);
             }
 
-            // Promedio de Y
-            double promedioY = SumY / puntosCargados.Count;
+            // Los coeficientes se almacenan en 'resultado.VectorResultante'
+            double[] coeficientes = resultado.VectorResultante;
 
-            // Recorremos los puntos para calcular sr y st
-            foreach (var punto in puntosCargados)
+            // Calcular sr y st
+            double sr = 0, st = 0;
+            double promedioY = PuntosCargados.Sum(p => p[1]) / n;
+
+            foreach (var punto in PuntosCargados)
             {
-                x = punto[0];
-                y = punto[1];
+                double x = punto[0];
+                double y = punto[1];
 
-                // Calculamos el valor predicho usando el polinomio
-                double yPredicho = 0;
-                for (int i = 0; i < ResultadoGJ.VectorResultante.Count(); i++)
+                st += Math.Pow(promedioY - y, 2);
+                double yAjustado = 0;
+
+                // Calcular el valor ajustado para la función polinómica
+                for (int i = 0; i <= grado; i++)
                 {
-                    yPredicho += ResultadoGJ.VectorResultante[i] * Math.Pow(x, i); // y = a0 + a1*x + a2*x^2 + ...
+                    yAjustado += coeficientes[i] * Math.Pow(x, i);
                 }
-
-                // Error cuadrático residual (diferencia entre valor predicho y real)
-                sr += Math.Pow((yPredicho - y), 2);
-
-                // Error cuadrático total (diferencia entre promedio de Y y valor real)
-                st += Math.Pow((promedioY - y), 2);
+                sr += Math.Pow(yAjustado - y, 2);
             }
 
-            // Calculamos el coeficiente de correlación r
+            // Calcular coeficiente de correlación r
             double r = Math.Sqrt((st - sr) / st) * 100;
 
-            // Retornamos la matriz, la función polinómica y el coeficiente de correlación
-            return (matriz, funcion, r);
+            // Efectividad del ajuste
+            string efectividad = r >= tolerancia ? "El ajuste es aceptable" : "El ajuste es insuficiente";
+
+            // Crear la función como string
+            string funcion = "y = ";
+            for (int i = grado; i >= 0; i--)
+            {
+                if (i < grado)
+                {
+                    funcion += " + ";
+                }
+                funcion += $"{coeficientes[i]}x^{i}";
+            }
+
+            return (funcion, r, efectividad);
         }
     }
 }
-
-
-
-
-
-
-
-

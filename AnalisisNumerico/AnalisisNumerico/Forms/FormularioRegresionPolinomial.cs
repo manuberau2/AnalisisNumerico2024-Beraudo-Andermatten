@@ -1,4 +1,5 @@
 ﻿using Analisis_Numerico;
+using AnalisisNumerico.Metodos.Unidad_3;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -99,6 +100,17 @@ namespace AnalisisNumerico.Forms
                 MessageBox.Show("Ingrese un % para la tolerancia.");
                 return;
             }
+            if (PuntosCargados.Count < 2)
+            {
+                MessageBox.Show("Ingrese al menos dos puntos.");
+                return;
+            }
+            var (funcion, r, efectividad) = RegresionPolinomial.CalcularRegresionPolinomial(PuntosCargados, int.Parse(TextBoxGrado.Text), int.Parse(TextBoxTolerancia.Text));
+            TextBoxFuncionObtenida.Text = funcion;
+            TextBoxCorrelacion.Text = r.ToString();
+            TextBoxAjuste.Text = efectividad;
+            Graficador.Graficar(PuntosCargados, funcion);
+            return;
         }
     }
 }

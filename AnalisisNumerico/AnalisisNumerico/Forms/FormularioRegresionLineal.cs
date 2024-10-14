@@ -74,8 +74,7 @@ namespace AnalisisNumerico.Forms
                 MessageBox.Show("Debe ingresar al menos dos puntos para calcular la regresión lineal.");
                 return;
             }
-            double tolerancia = 0;
-            var (funcion, r, efectividad) = RegresionLineal.CalcularRegresionLineal(PuntosCargados, tolerancia);
+            var (funcion, r, efectividad) = RegresionLineal.CalcularRegresionLineal(PuntosCargados, double.Parse(TextBoxTolerancia.Text));
             SetPanelGrafica();
             Graficador.Graficar(PuntosCargados, funcion);
             TextBoxFuncionObtenida.Text = funcion;
