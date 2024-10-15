@@ -142,5 +142,10 @@ namespace AnalisisNumerico
             formularioHijo.BringToFront();
             formularioHijo.Show();
         }
+
+        private void BtnUnidad4_Click(object sender, EventArgs e)
+        {
+            MostrarSubMenu(PanelUnidad4);
+        }
     }
 }
