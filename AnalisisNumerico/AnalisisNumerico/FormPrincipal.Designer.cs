@@ -32,9 +32,9 @@
             PanelSideMenu = new Panel();
             PanelUnidad4 = new Panel();
             BtnOctavoSimple = new Button();
-            this.BtnTercioMultiple = new Button();
-            this.BtnTercioSimple = new Button();
-            this.BtnTrapecioMultiple = new Button();
+            BtnTercioMultiple = new Button();
+            BtnTercioSimple = new Button();
+            BtnTrapecioMultiple = new Button();
             BtnTrapecioSimple = new Button();
             BtnUnidad4 = new Button();
             PanelUnidad3 = new Panel();
@@ -119,48 +119,48 @@
             // 
             // BtnTercioMultiple
             // 
-            this.BtnTercioMultiple.Dock = DockStyle.Top;
-            this.BtnTercioMultiple.FlatAppearance.BorderSize = 0;
-            this.BtnTercioMultiple.FlatStyle = FlatStyle.Flat;
-            this.BtnTercioMultiple.ForeColor = Color.LightGray;
-            this.BtnTercioMultiple.Location = new Point(0, 114);
-            this.BtnTercioMultiple.Name = "BtnTercioMultiple";
-            this.BtnTercioMultiple.Padding = new Padding(35, 0, 0, 0);
-            this.BtnTercioMultiple.Size = new Size(224, 38);
-            this.BtnTercioMultiple.TabIndex = 3;
-            this.BtnTercioMultiple.Text = "1/3 múltiple";
-            this.BtnTercioMultiple.TextAlign = ContentAlignment.MiddleLeft;
-            this.BtnTercioMultiple.UseVisualStyleBackColor = true;
+            BtnTercioMultiple.Dock = DockStyle.Top;
+            BtnTercioMultiple.FlatAppearance.BorderSize = 0;
+            BtnTercioMultiple.FlatStyle = FlatStyle.Flat;
+            BtnTercioMultiple.ForeColor = Color.LightGray;
+            BtnTercioMultiple.Location = new Point(0, 114);
+            BtnTercioMultiple.Name = "BtnTercioMultiple";
+            BtnTercioMultiple.Padding = new Padding(35, 0, 0, 0);
+            BtnTercioMultiple.Size = new Size(224, 38);
+            BtnTercioMultiple.TabIndex = 3;
+            BtnTercioMultiple.Text = "1/3 múltiple";
+            BtnTercioMultiple.TextAlign = ContentAlignment.MiddleLeft;
+            BtnTercioMultiple.UseVisualStyleBackColor = true;
             // 
             // BtnTercioSimple
             // 
-            this.BtnTercioSimple.Dock = DockStyle.Top;
-            this.BtnTercioSimple.FlatAppearance.BorderSize = 0;
-            this.BtnTercioSimple.FlatStyle = FlatStyle.Flat;
-            this.BtnTercioSimple.ForeColor = Color.LightGray;
-            this.BtnTercioSimple.Location = new Point(0, 76);
-            this.BtnTercioSimple.Name = "BtnTercioSimple";
-            this.BtnTercioSimple.Padding = new Padding(35, 0, 0, 0);
-            this.BtnTercioSimple.Size = new Size(224, 38);
-            this.BtnTercioSimple.TabIndex = 2;
-            this.BtnTercioSimple.Text = "1/3 simple";
-            this.BtnTercioSimple.TextAlign = ContentAlignment.MiddleLeft;
-            this.BtnTercioSimple.UseVisualStyleBackColor = true;
+            BtnTercioSimple.Dock = DockStyle.Top;
+            BtnTercioSimple.FlatAppearance.BorderSize = 0;
+            BtnTercioSimple.FlatStyle = FlatStyle.Flat;
+            BtnTercioSimple.ForeColor = Color.LightGray;
+            BtnTercioSimple.Location = new Point(0, 76);
+            BtnTercioSimple.Name = "BtnTercioSimple";
+            BtnTercioSimple.Padding = new Padding(35, 0, 0, 0);
+            BtnTercioSimple.Size = new Size(224, 38);
+            BtnTercioSimple.TabIndex = 2;
+            BtnTercioSimple.Text = "1/3 simple";
+            BtnTercioSimple.TextAlign = ContentAlignment.MiddleLeft;
+            BtnTercioSimple.UseVisualStyleBackColor = true;
             // 
             // BtnTrapecioMultiple
             // 
-            this.BtnTrapecioMultiple.Dock = DockStyle.Top;
-            this.BtnTrapecioMultiple.FlatAppearance.BorderSize = 0;
-            this.BtnTrapecioMultiple.FlatStyle = FlatStyle.Flat;
-            this.BtnTrapecioMultiple.ForeColor = Color.LightGray;
-            this.BtnTrapecioMultiple.Location = new Point(0, 38);
-            this.BtnTrapecioMultiple.Name = "BtnTrapecioMultiple";
-            this.BtnTrapecioMultiple.Padding = new Padding(35, 0, 0, 0);
-            this.BtnTrapecioMultiple.Size = new Size(224, 38);
-            this.BtnTrapecioMultiple.TabIndex = 1;
-            this.BtnTrapecioMultiple.Text = "Trapecio múltiple";
-            this.BtnTrapecioMultiple.TextAlign = ContentAlignment.MiddleLeft;
-            this.BtnTrapecioMultiple.UseVisualStyleBackColor = true;
+            BtnTrapecioMultiple.Dock = DockStyle.Top;
+            BtnTrapecioMultiple.FlatAppearance.BorderSize = 0;
+            BtnTrapecioMultiple.FlatStyle = FlatStyle.Flat;
+            BtnTrapecioMultiple.ForeColor = Color.LightGray;
+            BtnTrapecioMultiple.Location = new Point(0, 38);
+            BtnTrapecioMultiple.Name = "BtnTrapecioMultiple";
+            BtnTrapecioMultiple.Padding = new Padding(35, 0, 0, 0);
+            BtnTrapecioMultiple.Size = new Size(224, 38);
+            BtnTrapecioMultiple.TabIndex = 1;
+            BtnTrapecioMultiple.Text = "Trapecio múltiple";
+            BtnTrapecioMultiple.TextAlign = ContentAlignment.MiddleLeft;
+            BtnTrapecioMultiple.UseVisualStyleBackColor = true;
             // 
             // BtnTrapecioSimple
             // 
@@ -490,7 +490,9 @@
         }
 
         #endregion
-
+        private Button BtnTrapecioMultiple;
+        private Button BtnTercioSimple; 
+        private Button BtnTercioMultiple;
         private Panel PanelSideMenu;
         private Panel PanelUnidad1;
         private Button BtnBiseccion;
