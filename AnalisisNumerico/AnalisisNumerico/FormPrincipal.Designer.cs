@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             PanelSideMenu = new Panel();
             PanelUnidad4 = new Panel();
+            BtnCombinado = new Button();
             BtnOctavoSimple = new Button();
             BtnTercioMultiple = new Button();
             BtnTercioSimple = new Button();
@@ -55,7 +56,6 @@
             pictureBox1 = new PictureBox();
             PanelFormularioHijo = new Panel();
             pictureBox2 = new PictureBox();
-            BtnCombinado = new Button();
             PanelSideMenu.SuspendLayout();
             PanelUnidad4.SuspendLayout();
             PanelUnidad3.SuspendLayout();
@@ -91,9 +91,9 @@
             PanelUnidad4.BackColor = Color.FromArgb(35, 32, 39);
             PanelUnidad4.Controls.Add(BtnCombinado);
             PanelUnidad4.Controls.Add(BtnOctavoSimple);
-            PanelUnidad4.Controls.Add(this.BtnTercioMultiple);
-            PanelUnidad4.Controls.Add(this.BtnTercioSimple);
-            PanelUnidad4.Controls.Add(this.BtnTrapecioMultiple);
+            PanelUnidad4.Controls.Add(BtnTercioMultiple);
+            PanelUnidad4.Controls.Add(BtnTercioSimple);
+            PanelUnidad4.Controls.Add(BtnTrapecioMultiple);
             PanelUnidad4.Controls.Add(BtnTrapecioSimple);
             PanelUnidad4.Dock = DockStyle.Top;
             PanelUnidad4.Location = new Point(0, 617);
@@ -101,6 +101,22 @@
             PanelUnidad4.Size = new Size(224, 243);
             PanelUnidad4.TabIndex = 7;
             PanelUnidad4.Visible = false;
+            // 
+            // BtnCombinado
+            // 
+            BtnCombinado.Dock = DockStyle.Top;
+            BtnCombinado.FlatAppearance.BorderSize = 0;
+            BtnCombinado.FlatStyle = FlatStyle.Flat;
+            BtnCombinado.ForeColor = Color.LightGray;
+            BtnCombinado.Location = new Point(0, 190);
+            BtnCombinado.Name = "BtnCombinado";
+            BtnCombinado.Padding = new Padding(35, 0, 0, 0);
+            BtnCombinado.Size = new Size(224, 38);
+            BtnCombinado.TabIndex = 5;
+            BtnCombinado.Text = "Combinado";
+            BtnCombinado.TextAlign = ContentAlignment.MiddleLeft;
+            BtnCombinado.UseVisualStyleBackColor = true;
+            BtnCombinado.Click += BtnCombinado_Click;
             // 
             // BtnOctavoSimple
             // 
@@ -116,6 +132,7 @@
             BtnOctavoSimple.Text = "3/8 simple";
             BtnOctavoSimple.TextAlign = ContentAlignment.MiddleLeft;
             BtnOctavoSimple.UseVisualStyleBackColor = true;
+            BtnOctavoSimple.Click += BtnOctavoSimple_Click;
             // 
             // BtnTercioMultiple
             // 
@@ -131,6 +148,7 @@
             BtnTercioMultiple.Text = "1/3 múltiple";
             BtnTercioMultiple.TextAlign = ContentAlignment.MiddleLeft;
             BtnTercioMultiple.UseVisualStyleBackColor = true;
+            BtnTercioMultiple.Click += BtnTercioMultiple_Click;
             // 
             // BtnTercioSimple
             // 
@@ -146,6 +164,7 @@
             BtnTercioSimple.Text = "1/3 simple";
             BtnTercioSimple.TextAlign = ContentAlignment.MiddleLeft;
             BtnTercioSimple.UseVisualStyleBackColor = true;
+            BtnTercioSimple.Click += BtnTercioSimple_Click;
             // 
             // BtnTrapecioMultiple
             // 
@@ -161,6 +180,7 @@
             BtnTrapecioMultiple.Text = "Trapecio múltiple";
             BtnTrapecioMultiple.TextAlign = ContentAlignment.MiddleLeft;
             BtnTrapecioMultiple.UseVisualStyleBackColor = true;
+            BtnTrapecioMultiple.Click += BtnTrapecioMultiple_Click;
             // 
             // BtnTrapecioSimple
             // 
@@ -176,6 +196,7 @@
             BtnTrapecioSimple.Text = "Trapecio simple";
             BtnTrapecioSimple.TextAlign = ContentAlignment.MiddleLeft;
             BtnTrapecioSimple.UseVisualStyleBackColor = true;
+            BtnTrapecioSimple.Click += BtnTrapecioSimple_Click;
             // 
             // BtnUnidad4
             // 
@@ -448,21 +469,6 @@
             pictureBox2.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox2.TabIndex = 0;
             pictureBox2.TabStop = false;
-            // 
-            // BtnCombinado
-            // 
-            BtnCombinado.Dock = DockStyle.Top;
-            BtnCombinado.FlatAppearance.BorderSize = 0;
-            BtnCombinado.FlatStyle = FlatStyle.Flat;
-            BtnCombinado.ForeColor = Color.LightGray;
-            BtnCombinado.Location = new Point(0, 190);
-            BtnCombinado.Name = "BtnCombinado";
-            BtnCombinado.Padding = new Padding(35, 0, 0, 0);
-            BtnCombinado.Size = new Size(224, 38);
-            BtnCombinado.TabIndex = 5;
-            BtnCombinado.Text = "Combinado";
-            BtnCombinado.TextAlign = ContentAlignment.MiddleLeft;
-            BtnCombinado.UseVisualStyleBackColor = true;
             // 
             // FormPrincipal
             // 

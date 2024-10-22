@@ -28,10 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "FormularioTercioSimple";
+            SuspendLayout();
+            // 
+            // FormularioTercioSimple
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(32, 30, 45);
+            ClientSize = new Size(975, 548);
+            Name = "FormularioTercioSimple";
+            Text = "FormularioTercioSimple";
+            ResumeLayout(false);
         }
 
         #endregion

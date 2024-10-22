@@ -147,5 +147,41 @@ namespace AnalisisNumerico
         {
             MostrarSubMenu(PanelUnidad4);
         }
+
+        private void BtnTrapecioSimple_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormularioTrapecioSimple());
+            OcultarSubMenu();
+        }
+
+        private void BtnTrapecioMultiple_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormularioTrapecioMultiple());
+            OcultarSubMenu();
+        }
+
+        private void BtnTercioSimple_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormularioTercioSimple());
+            OcultarSubMenu();
+        }
+
+        private void BtnTercioMultiple_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormularioTercioMultiple());
+            OcultarSubMenu();
+        }
+
+        private void BtnOctavoSimple_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormularioOctavoSimple());
+            OcultarSubMenu();
+        }
+
+        private void BtnCombinado_Click(object sender, EventArgs e)
+        {
+            AbrirFormularioHijo(new FormularioCombinado());
+            OcultarSubMenu();
+        }
     }
 }
