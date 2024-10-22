@@ -15,7 +15,8 @@ namespace AnalisisNumerico.Metodos.Unidad_4
             if (Func.Sintaxis(funcion, 'x'))
             {
                 return ((Func.EvaluaFx(xi) + Func.EvaluaFx(xd)) * (xd - xi)) / 2;
-            } else
+            }
+            else
             {
                 return double.NaN;
             }
@@ -24,16 +25,17 @@ namespace AnalisisNumerico.Metodos.Unidad_4
         public double CalcularIntegralTrapecioMultiple(string funcion, double xi, double xd, int n)
         {
             Calculo Func = new Calculo();
-            if(Func.Sintaxis(funcion, 'x'))
+            if (Func.Sintaxis(funcion, 'x'))
             {
                 double h = (xd - xi) / n;
                 double sum = 0;
-                for (int i = 0; i < n; i++)
+                for (int i = 1; i < n; i++)
                 {
                     sum += Func.EvaluaFx(xi + h * i);
-                } 
-                return (h/2) * (Func.EvaluaFx(xi) + 2*sum + Func.EvaluaFx(xd));
-            } else
+                }
+                return (h / 2) * (Func.EvaluaFx(xi) + 2 * sum + Func.EvaluaFx(xd));
+            }
+            else
             {
                 return double.NaN;
             }
